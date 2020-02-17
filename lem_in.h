@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:40:03 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/14 21:25:17 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/02/16 10:05:25 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 # include "libft/libft.h"
 # include "libft/graph/graph.h"
-# include "libft/array_list/array_list.h"
+# include "libft/queue/queue.h"
 # include <stdio.h>
 
 /*
@@ -40,12 +40,12 @@ typedef struct	s_rooms
 
 typedef struct	s_lem_in
 {
-	int				fd;
 	unsigned int	ants;
 	void			*rooms;
 	t_graph			*graph;
 	void			*start;
 	void			*end;
+	t_queue			results;
 }				t_lem_in;
 
 /*
@@ -56,5 +56,6 @@ int				ft_reader(t_lem_in *farm);
 int				check_if_comment(char *line);
 int				get_number_of_ants(t_lem_in *farm);
 int				get_the_rooms(t_lem_in *farm);
+void			ft_print_results(t_queue *results);
 
 #endif

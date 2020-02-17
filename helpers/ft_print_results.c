@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enqueue.c                                          :+:      :+:    :+:   */
+/*   ft_print_results.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/18 11:06:25 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/16 09:58:18 by mesafi           ###   ########.fr       */
+/*   Created: 2020/02/16 10:05:41 by mesafi            #+#    #+#             */
+/*   Updated: 2020/02/16 10:06:59 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "queue.h"
+#include "../lem_in.h"
 
-void	enqueue(t_queue *queue, t_list *node)
+void			ft_print_results(t_queue *results)
 {
-	queue->size += 1;
-	if (queue->last == NULL)
+	t_list	*node;
+
+	while (results->size != 0)
 	{
-		queue->front = node;
-		queue->last = node;
-		return ;
+		node = dequeue(results);
+		ft_printf("%s\n", node->content);
+		free(node->content);
+		free(node);
 	}
-	queue->last->next = node;
-	queue->last = node;
 }

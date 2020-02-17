@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 09:01:23 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/14 21:23:45 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/02/17 09:08:06 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ int		get_number_of_ants(t_lem_in *farm)
 
 	while (get_next_line(0, &line))
 	{
-		write(farm->fd, line, ft_strlen(line));
-		write(farm->fd, "\n", 1);
+		enqueue(&(farm->results), ft_lstnew(line, ft_strlen(line) + 1));
 		respond = check_if_comment(line);
 		if (respond == 0)
 			farm->ants = ft_atoi(line);

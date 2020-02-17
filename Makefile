@@ -6,7 +6,7 @@
 #    By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/20 13:51:29 by mesafi            #+#    #+#              #
-#    Updated: 2020/02/12 09:06:13 by mesafi           ###   ########.fr        #
+#    Updated: 2020/02/16 10:07:22 by mesafi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ OBJS		= lem_in.o \
 				helpers/ft_reader.o \
 				helpers/check_if_comment.o \
 				helpers/get_number_of_ants.o \
-				helpers/get_the_rooms.o
+				helpers/get_the_rooms.o \
+				helpers/ft_print_results.o
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 
