@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:40:03 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/17 10:21:51 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/02/17 19:04:16 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ int				check_if_comment(char *line);
 int				get_number_of_ants(t_lem_in *farm);
 int				get_the_rooms(t_lem_in *farm);
 void			ft_print_results(t_queue *results);
+int				get_the_links(t_lem_in *farm);
 
 #endif
