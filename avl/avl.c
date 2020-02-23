@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 12:00:22 by tbareich          #+#    #+#             */
-/*   Updated: 2020/02/19 06:55:29 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/02/23 13:17:01 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,30 @@
 #include "libft/libft.h"
 #include <stdlib.h>
 
-t_avl			*new_node(int key, void *content)
+t_avl			*new_node(int key, void *content, size_t size)
 {
 	t_avl	*node;
 
 	if ((node = (t_avl *)malloc(sizeof(t_avl))) == 0)
 		return (0);
-	node->content = content;
 	node->key = key;
 	node->height = 0;
 	node->left = 0;
 	node->right = 0;
+	if (content == NULL)
+	{
+		node->content = 0;
+		node->content_size = 0;
+		return (node);
+	}
+	if ((node->content = malloc(sizeof(size))) == 0)
+	{
+		ft_memdel((void **)&node);
+		return (0);
+	}
+	ft_memcpy(node->content, content, size);
+	node->content_size = size;
+	return (node);
 }
 
 int		get_balance(t_avl *node)
