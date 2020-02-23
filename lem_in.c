@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:39:20 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/17 19:00:04 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/02/21 18:54:47 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_lem_in	*ft_init(void)
 	t_lem_in	*farm;
 
 	farm = (t_lem_in *)malloc(sizeof(t_lem_in));
+	farm->ants = 0;
 	init_queue(&(farm->results));
 	return (farm);
 }

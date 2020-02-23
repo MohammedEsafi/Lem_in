@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 16:05:55 by tbareich          #+#    #+#             */
-/*   Updated: 2020/02/06 16:12:54 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/02/17 19:46:39 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 
 /*
- ** Definitions
+	** Definitions
 */
 
 # define FT_PRINTF_H
@@ -42,14 +42,14 @@
 # define RESET "\033[0m"
 
 /*
- ** Includes
+	** Includes
 */
 
-# include "../libft.h"
+# include <libft.h>
 # include <stdarg.h>
 
 /*
- ** Unions
+	** Unions
 */
 
 union			u_double
@@ -78,7 +78,7 @@ union			u_double
 }				u_double;
 
 /*
- ** Structures
+	** Structures
 */
 
 typedef struct	s_printf_arg
@@ -99,7 +99,7 @@ typedef struct	s_fast_power
 }				t_fast_power;
 
 /*
- ** Functions
+	** Functions
 */
 
 int				ft_printf(const char *format, ...);

@@ -3,84 +3,102 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+         #
+#    By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/01/21 20:36:14 by mesafi            #+#    #+#              #
-#    Updated: 2020/01/21 21:09:38 by mesafi           ###   ########.fr        #
+#    Created: 2019/09/24 14:13:12 by tbareich          #+#    #+#              #
+#    Updated: 2020/02/17 20:49:43 by tbareich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Standard variables
-NAME		= ft_printf.a
+NAME = ../libftprintf.a
 
-OBJS		= ft_printf.o
+FT_PRINTF = libftprintf.a
 
-LIBFT		= ../ft_atoi.o \
-			../ft_bzero.o \
-			../ft_isalnum.o \
-			../ft_isalpha.o \
-			../ft_isascii.o \
-			../ft_isdigit.o \
-			../ft_isprint.o \
-			../ft_itoa.o \
-			../ft_lstadd.o \
-			../ft_lstdel.o \
-			../ft_lstdelone.o \
-			../ft_lstiter.o \
-			../ft_lstmap.o \
-			../ft_lstnew.o \
-			../ft_lstpop.o \
-			../ft_lstpush.o \
-			../ft_memalloc.o \
-			../ft_memccpy.o \
-			../ft_memchr.o \
-			../ft_memcmp.o \
-			../ft_memcpy.o \
-			../ft_memdel.o \
-			../ft_memmove.o \
-			../ft_memset.o \
-			../ft_putchar.o \
-			../ft_putchar_fd.o \
-			../ft_putendl.o \
-			../ft_putendl_fd.o \
-			../ft_putlst.o \
-			../ft_putnbr.o \
-			../ft_putnbr_fd.o \
-			../ft_putstr.o \
-			../ft_putstr_fd.o \
-			../ft_strcat.o \
-			../ft_strchr.o \
-			../ft_strclr.o \
-			../ft_strcmp.o \
-			../ft_strcpy.o \
-			../ft_strdel.o \
-			../ft_strdup.o \
-			../ft_strequ.o \
-			../ft_striter.o \
-			../ft_striteri.o \
-			../ft_strjoin.o \
-			../ft_strlcat.o \
-			../ft_strlen.o \
-			../ft_strmap.o \
-			../ft_strmapi.o \
-			../ft_strncat.o \
-			../ft_strncmp.o \
-			../ft_strncpy.o \
-			../ft_strnequ.o \
-			../ft_strnew.o \
-			../ft_strnstr.o \
-			../ft_strrchr.o \
-			../ft_strsplit.o \
-			../ft_strstr.o \
-			../ft_strsub.o \
-			../ft_strtrim.o \
-			../ft_tolower.o \
-			../ft_toupper.o \
-			../get_int_len.o \
-			../ft_strjoin_free.o \
-			../get_next_line.o 
+HEADER = ft_printf.h
 
-SPECIFIERS	= specifiers/ft_specifier_char.o \
+LIBFTOBJS = ../lib/bst_delete.o \
+			../lib/bst_deletenode.o \
+			../lib/bst_find.o \
+			../lib/bst_inorder.o \
+			../lib/bst_insert.o \
+			../lib/bst_max.o \
+			../lib/bst_min.o \
+			../lib/bst_modify_addr.o \
+			../lib/bst_newnode.o \
+			../lib/ft_atoi.o \
+			../lib/ft_bzero.o \
+			../lib/ft_delcontent.o \
+			../lib/ft_isalnum.o \
+			../lib/ft_isalpha.o \
+			../lib/ft_isascii.o \
+			../lib/ft_isdigit.o \
+			../lib/ft_isprint.o \
+			../lib/ft_itoa.o \
+			../lib/ft_lstadd.o \
+			../lib/ft_lstaddat.o \
+			../lib/ft_lstdel.o \
+			../lib/ft_lstdelat.o \
+			../lib/ft_lstdelone.o \
+			../lib/ft_lstiter.o \
+			../lib/ft_lstlen.o \
+			../lib/ft_lstmap.o \
+			../lib/ft_lstnew.o \
+			../lib/ft_lstpop.o \
+			../lib/ft_lstpush.o \
+			../lib/ft_lstshift.o \
+			../lib/ft_memalloc.o \
+			../lib/ft_memccpy.o \
+			../lib/ft_memchr.o \
+			../lib/ft_memcmp.o \
+			../lib/ft_memcpy.o \
+			../lib/ft_memdel.o \
+			../lib/ft_memmove.o \
+			../lib/ft_memset.o \
+			../lib/ft_putchar.o \
+			../lib/ft_putchar_fd.o \
+			../lib/ft_putendl.o \
+			../lib/ft_putendl_fd.o \
+			../lib/ft_putlst.o \
+			../lib/ft_putnbr.o \
+			../lib/ft_putnbr_fd.o \
+			../lib/ft_putstr.o \
+			../lib/ft_putstr_fd.o \
+			../lib/ft_realloc.o \
+			../lib/ft_strcat.o \
+			../lib/ft_strchr.o \
+			../lib/ft_strclr.o \
+			../lib/ft_strcmp.o \
+			../lib/ft_strcpy.o \
+			../lib/ft_strdel.o \
+			../lib/ft_strdup.o \
+			../lib/ft_strdup_free.o \
+			../lib/ft_strequ.o \
+			../lib/ft_striter.o \
+			../lib/ft_striteri.o \
+			../lib/ft_strjoin.o \
+			../lib/ft_strjoin_free.o \
+			../lib/ft_strlcat.o \
+			../lib/ft_strlen.o \
+			../lib/ft_strmap.o \
+			../lib/ft_strmapi.o \
+			../lib/ft_strncat.o \
+			../lib/ft_strncmp.o \
+			../lib/ft_strncpy.o \
+			../lib/ft_strnequ.o \
+			../lib/ft_strnew.o \
+			../lib/ft_strnstr.o \
+			../lib/ft_strrchr.o \
+			../lib/ft_strsplit.o \
+			../lib/ft_strstr.o \
+			../lib/ft_strsub.o \
+			../lib/ft_strtrim.o \
+			../lib/ft_tolower.o \
+			../lib/ft_toupper.o \
+			../lib/get_int_len.o \
+			../lib/get_next_line.o
+
+OBJS = ft_printf.o \
+			specifiers/ft_specifier_char.o \
 			specifiers/ft_specifier_double.o \
 			specifiers/ft_specifier_hex.o \
 			specifiers/ft_specifier_int.o \
@@ -88,17 +106,15 @@ SPECIFIERS	= specifiers/ft_specifier_char.o \
 			specifiers/ft_specifier_pointer.o \
 			specifiers/ft_specifier_string.o \
 			specifiers/ft_specifier_binary.o \
-			specifiers/ft_specifier_uint.o
-
-PARSERS		= parsers/ft_parse_flags.o \
+			specifiers/ft_specifier_uint.o \
+			parsers/ft_parse_flags.o \
 			parsers/ft_parse_format.o \
 			parsers/ft_parse_length.o \
 			parsers/ft_parse_parameter.o \
 			parsers/ft_parse_precision.o \
 			parsers/ft_parse_specifier.o \
-			parsers/ft_parse_width.o 
-			
-HELPERS		= helpers/ft_snumtoa.o \
+			parsers/ft_parse_width.o \
+			helpers/ft_snumtoa.o \
 			helpers/ft_unumtoa.o \
 			helpers/pad_spaces.o \
 			helpers/pad_zeros.o \
@@ -115,25 +131,50 @@ HELPERS		= helpers/ft_snumtoa.o \
 			helpers/error_handler.o \
 			helpers/separated_number.o
 
-CC			= gcc
+CC = gcc
 
-CFLAGS		= -Wall -Werror -Wextra
+# ****************
+# **** COLORS ****
+# ****************
+GREEN = \033[32m
+YELLOW = \033[33m
+RED = \033[91m
+BLUE = \033[96m
+RESET = \033[0m
+# ****************
+# ****************
 
-# Start rules
-all: $(NAME)
+CFLAGS = -Wall -Werror -Wextra
 
-$(NAME): $(OBJS) $(SPECIFIERS) $(LIBFT) $(PARSERS) $(HELPERS)
-	@ar rc $(NAME) $(OBJS) $(SPECIFIERS) $(LIBFT) $(PARSERS) $(HELPERS)
+all: build $(NAME)
+
+build: 
+	@if [ ! -f $(NAME) ] ; then \
+		echo "$(BLUE)→ $(YELLOW)Creating $(FT_PRINTF) ...$(RESET)" ; \
+	fi;
+
+$(NAME): $(OBJS) $(HEADER)
+	@if [ ! -f $(NAME) ] ; then \
+		echo "$(BLUE)→ $(GREEN)$(FT_PRINTF) done $(RESET)" ; \
+	else \
+		echo "$(BLUE)→ $(GREEN)$(FT_PRINTF) UPDATED$(RESET)" ; \
+	fi;
+	@ar rc $(NAME) $(OBJS) $(LIBFTOBJS)
 	@ranlib $(NAME)
+
+%.o: %.c
+	@$(CC) -I.. $(CFLAGS) -c -o $@ $<
+	@if [[ $? && -f $(NAME) ]] ; then \
+		echo "$(BLUE)→ $@ UPDATED$(RESET)" ; \
+	fi;
 
 clean:
 	@rm -rf $(OBJS)
-	@rm -rf $(SPECIFIERS)
-	@rm -rf $(PARSERS)
-	@rm -rf $(HELPERS)
-	@rm -rf $(LIBFT)
+	@echo "$(BLUE)→ $(RED)$(FT_PRINTF) clean$(RESET)"
 
 fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re build

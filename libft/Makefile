@@ -3,153 +3,158 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+         #
+#    By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/03/29 23:34:49 by mesafi            #+#    #+#              #
-#    Updated: 2020/02/14 20:13:16 by mesafi           ###   ########.fr        #
+#    Created: 2019/03/29 23:44:50 by tbareich          #+#    #+#              #
+#    Updated: 2020/02/23 12:04:14 by tbareich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Usage:
-# make			# compile all binary
-# make clean	# remove all binaries and objects
-# make fclean	# remove created library
-# make re		# Get recompiled
+NAME = libft.a
 
-# Standard variables
-NAME		= libft.a
+FTPRINTF = ft_printf
 
-FT_PRINTF	= ft_printf/ft_printf.a
+HEADER = libft.h
 
-OBJS		= ft_atoi.o \
-			ft_bzero.o \
-			ft_del.o \
-			ft_isalnum.o \
-			ft_isalpha.o \
-			ft_isascii.o \
-			ft_isdigit.o \
-			ft_isprint.o \
-			ft_itoa.o \
-			ft_lstadd.o \
-			ft_lstadd_i.o \
-			ft_lstcount.o \
-			ft_lstdel.o \
-			ft_lstdelone.o \
-			ft_lstiter.o \
-			ft_lstmap.o \
-			ft_lstnew.o \
-			ft_lstpop.o \
-			ft_lstpush.o \
-			ft_lstrm.o \
-			ft_lstrm_i.o \
-			ft_memalloc.o \
-			ft_memccpy.o \
-			ft_memchr.o \
-			ft_memcmp.o \
-			ft_memcpy.o \
-			ft_memdel.o \
-			ft_memmove.o \
-			ft_memset.o \
-			ft_putchar.o \
-			ft_putchar_fd.o \
-			ft_putendl.o \
-			ft_putendl_fd.o \
-			ft_putlst.o \
-			ft_putnbr.o \
-			ft_putnbr_fd.o \
-			ft_putstr.o \
-			ft_putstr_fd.o \
-			ft_strcat.o \
-			ft_strchr.o \
-			ft_strclr.o \
-			ft_strcmp.o \
-			ft_strcpy.o \
-			ft_strdel.o \
-			ft_strdup.o \
-			ft_strequ.o \
-			ft_striter.o \
-			ft_striteri.o \
-			ft_strjoin.o \
-			ft_strlcat.o \
-			ft_strlen.o \
-			ft_strmap.o \
-			ft_strmapi.o \
-			ft_strncat.o \
-			ft_strncmp.o \
-			ft_strncpy.o \
-			ft_strnequ.o \
-			ft_strnew.o \
-			ft_strnstr.o \
-			ft_strrchr.o \
-			ft_strsplit.o \
-			ft_strstr.o \
-			ft_strsub.o \
-			ft_strtrim.o \
-			ft_tolower.o \
-			ft_toupper.o \
-			get_int_len.o \
-			ft_strndup.o \
-			ft_strjoin_free.o \
-			get_next_line.o \
-			ft_is_number.o \
-			queue/init_queue.o \
-			queue/free_queue.o \
+OBJS = lib/bst_delete.o \
+			lib/bst_deletenode.o \
+			lib/bst_find.o \
+			lib/bst_inorder.o \
+			lib/bst_insert.o \
+			lib/bst_max.o \
+			lib/bst_min.o \
+			lib/bst_modify_addr.o \
+			lib/bst_newnode.o \
+			lib/ft_atoi.o \
+			lib/ft_bzero.o \
+			lib/ft_delcontent.o \
+			lib/ft_isalnum.o \
+			lib/ft_isalpha.o \
+			lib/ft_isascii.o \
+			lib/ft_isdigit.o \
+			lib/ft_isprint.o \
+			lib/ft_itoa.o \
+			lib/ft_lstadd.o \
+			lib/ft_lstaddat.o \
+			lib/ft_lstdel.o \
+			lib/ft_lstdelat.o \
+			lib/ft_lstdelone.o \
+			lib/ft_lstiter.o \
+			lib/ft_lstlen.o \
+			lib/ft_lstmap.o \
+			lib/ft_lstnew.o \
+			lib/ft_lstpop.o \
+			lib/ft_lstpush.o \
+			lib/ft_lstshift.o \
+			lib/ft_memalloc.o \
+			lib/ft_memccpy.o \
+			lib/ft_memchr.o \
+			lib/ft_memcmp.o \
+			lib/ft_memcpy.o \
+			lib/ft_memdel.o \
+			lib/ft_memmove.o \
+			lib/ft_memset.o \
+			lib/ft_putchar.o \
+			lib/ft_putchar_fd.o \
+			lib/ft_putendl.o \
+			lib/ft_putendl_fd.o \
+			lib/ft_putlst.o \
+			lib/ft_putnbr.o \
+			lib/ft_putnbr_fd.o \
+			lib/ft_putstr.o \
+			lib/ft_putstr_fd.o \
+			lib/ft_strcat.o \
+			lib/ft_strchr.o \
+			lib/ft_strclr.o \
+			lib/ft_strcmp.o \
+			lib/ft_strcpy.o \
+			lib/ft_strdel.o \
+			lib/ft_strdup.o \
+			lib/ft_strdup_free.o \
+			lib/ft_strequ.o \
+			lib/ft_striter.o \
+			lib/ft_striteri.o \
+			lib/ft_strjoin.o \
+			lib/ft_strjoin_free.o \
+			lib/ft_strlcat.o \
+			lib/ft_strlen.o \
+			lib/ft_strmap.o \
+			lib/ft_strmapi.o \
+			lib/ft_strncat.o \
+			lib/ft_strncmp.o \
+			lib/ft_strncpy.o \
+			lib/ft_strnequ.o \
+			lib/ft_strnew.o \
+			lib/ft_strnstr.o \
+			lib/ft_strrchr.o \
+			lib/ft_strsplit.o \
+			lib/ft_strstr.o \
+			lib/ft_strsub.o \
+			lib/ft_strtrim.o \
+			lib/ft_tolower.o \
+			lib/ft_toupper.o \
+			lib/get_int_len.o \
+			lib/ft_realloc.o \
+			lib/get_next_line.o \
+			lib/ft_strip.o \
+			lib/ft_is_number.o \
 			queue/dequeue.o \
 			queue/enqueue.o \
-			stack/init_stack.o \
-			stack/free_stack.o \
-			stack/pop.o \
-			stack/push.o \
-			graph/create_graph.o \
+			queue/init_queue.o \
+			queue/free_queue.o \
 			graph/add_edge.o \
+			graph/create_graph.o \
 			graph/print_graph.o \
-			array_list/init_array_list.o \
-			array_list/free_array_list.o \
-			array_list/append.o
+			math/max.o \
+			math/min.o
 
-CC			= gcc
+CC = gcc
 
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
-# Colors
-BLACK		= \033[30m
-RED			= \033[31m
-GREEN		= \033[32m
-YELLOW		= \033[93m
-BLUE		= \033[34m
-MAGENTA		= \033[35m
-CYAN		= \033[36m
-WHITE		= \033[37m
-RESET		= \033[0m
+# ****************
+# **** COLORS ****
+# ****************
+GREEN = \033[32m
+YELLOW = \033[33m
+RED = \033[91m
+BLUE = \033[96m
+RESET = \033[0m
+# ****************
+# ****************
 
-# Start rules
 all: build $(NAME)
 
-build:
+build: 
 	@if [ ! -f $(NAME) ] ; then \
-		echo "⇾ building $(NAME)..." ; \
+		echo "$(BLUE)→ $(YELLOW)Creating $(NAME) ...$(RESET)" ; \
 	fi;
 
-$(NAME): $(OBJS) libft.h
-	@make -s -C ft_printf
+$(NAME): $(OBJS) $(HEADER)
+	@make -C ft_printf
+	@if [ ! -f $(NAME) ] ; then \
+		echo "$(BLUE)→ $(GREEN)$(NAME) done $(RESET)" ; \
+	else \
+		echo "$(BLUE)→ $(GREEN)$(NAME) UPDATED$(RESET)" ; \
+	fi;
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
-	@echo "⇾ $(NAME) $(GREEN)done ( ˆᴗˆ )$(RESET)"
-
+	
 %.o: %.c
-	@$(CC) -c $(CFLAGS) $< -o $@
-	@if [[ -f $(NAME) ]] ; then \
-		echo "⇾ $@ $(GREEN)updated$(RESET)" ; \
+	@$(CC) -I. $(CFLAGS) -c -o $@ $<
+	@if [[ $? && -f $(NAME) ]] ; then \
+		echo "$(BLUE)→ $@ UPDATED$(RESET)" ; \
 	fi;
 
 clean:
+	@make clean -C ft_printf
 	@rm -f $(OBJS)
-	@echo "⇾ $(NAME) $(RED)cleaned$(RESET)"
-	@make -s clean -C ft_printf
+	@echo "$(BLUE)→ $(RED)$(NAME) clean$(RESET)"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "⇾ $(NAME) $(RED)deleted$(RESET)"
-	@rm -f $(FT_PRINTF)
+	@make fclean -C $(FTPRINTF)
 
 re: fclean all
+
+.PHONY: all clean fclean re build

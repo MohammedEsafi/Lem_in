@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 09:04:05 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/17 18:56:24 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/02/18 09:16:38 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		get_the_rooms(t_lem_in *farm)
 		respond = check_if_comment(line);
 		if (respond > 0 && respond < 4)
 		{
-			ft_memdel((void **)line);
+			ft_memdel((void **)&line);
 			continue ;
 		}
 		if (!(element = (t_rooms *)malloc(sizeof(t_rooms))))
