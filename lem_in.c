@@ -6,11 +6,12 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:39:20 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/23 13:05:35 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/02/24 11:10:55 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+#include "avl/avl.h"
 
 // static t_lem_in	*ft_init(void)
 // {
@@ -33,6 +34,7 @@
 
 int			main(void)
 {
+	t_avl	*root = 0;
 	// t_lem_in	*farm;
 
 	// farm = ft_init();
@@ -40,5 +42,11 @@ int			main(void)
 	// 	ft_error_handler(farm, 0);
 	// ft_print_results(&(farm->results));
 	// avl()
+	root = avl_insert_str(root, 0, "abb", ft_strlen("abb"));
+	root = avl_insert_str(root, 1, "bbc", ft_strlen("abc"));
+	root = avl_insert_str(root, 2, "abc", ft_strlen("abc"));
+	root = avl_insert_str(root, 3, "abb", ft_strlen("abc"));
+	// root = avl_insert_str(root, "abb", ft_strlen("abb"), 1);
+	print_str_avl(root);
 	return (0);
 }
