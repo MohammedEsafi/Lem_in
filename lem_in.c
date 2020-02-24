@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:39:20 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/24 11:10:55 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/02/24 20:53:15 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,17 @@ int			main(void)
 	// 	ft_error_handler(farm, 0);
 	// ft_print_results(&(farm->results));
 	// avl()
-	root = avl_insert_str(root, 0, "abb", ft_strlen("abb"));
-	root = avl_insert_str(root, 1, "bbc", ft_strlen("abc"));
-	root = avl_insert_str(root, 2, "abc", ft_strlen("abc"));
-	root = avl_insert_str(root, 3, "abb", ft_strlen("abc"));
-	// root = avl_insert_str(root, "abb", ft_strlen("abb"), 1);
+	root = avl_insert_str(root, 0, "7", ft_strlen("1"));
+	root = avl_insert_str(root, 0, "8", ft_strlen("1"));
+	root = avl_insert_str(root, 3, "1", ft_strlen("1"));
+	root = avl_insert_str(root, 2, "2", ft_strlen("1"));
+	root = avl_insert_str(root, 0, "3", ft_strlen("1"));
+	root = avl_insert_str(root, 0, "6", ft_strlen("1"));
+	root = avl_insert_str(root, 0, "4", ft_strlen("1"));
+	root = avl_insert_str(root, 0, "5", ft_strlen("1"));
+	root = avl_insert_str(root, 0, "0", ft_strlen("1"));
+	root = avl_insert_str(root, 0, "9", ft_strlen("1"));
+	root = avl_insert_str(root, 0, "10", ft_strlen("10"));
 	print_str_avl(root);
 	return (0);
 }

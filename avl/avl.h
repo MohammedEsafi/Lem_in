@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 11:50:32 by tbareich          #+#    #+#             */
-/*   Updated: 2020/02/24 11:01:14 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/02/24 15:09:55 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 # include <stdlib.h>
 # include "../libft/libft.h"
+#include "../libft/ft_printf/ft_printf.h"
 
 typedef struct	s_avl
 {

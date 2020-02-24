@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 12:00:22 by tbareich          #+#    #+#             */
-/*   Updated: 2020/02/24 11:10:06 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/02/24 20:03:15 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 
 int		height(t_avl *node)
 {
-	if (node == 0)
-		return (0);
-	if (node->left == 0 && node->right == 0)
+	if (node == 0 || (node->left == 0 && node->right == 0))
 		return (0);
 	if (node->left == 0)
-		return (node->right->height);
+		return (1 + node->right->height);
 	if (node->right == 0)
-		return (node->left->height);
-	return (max(node->left->height, node->right->height) + 1);
+		return (1 + node->left->height);
+	return (1 + max(node->left->height, node->right->height));
 }
 
 t_avl	*left_rot(t_avl *node)
@@ -36,7 +34,7 @@ t_avl	*left_rot(t_avl *node)
 	node->right = tmp;
 	node->height = height(node);
 	right->height = height(right);
-	return (node);
+	return (right);
 }
 
 t_avl	*right_rot(t_avl *node)
@@ -50,7 +48,7 @@ t_avl	*right_rot(t_avl *node)
 	node->left = tmp;
 	node->height = height(node);
 	left->height = height(left);
-	return (node);
+	return (left);
 }
 
 int		get_balance(t_avl *node)
@@ -61,9 +59,9 @@ int		get_balance(t_avl *node)
 	right = 0;
 	left = 0;
 	if (node->right != 0)
-		right = node->right->height;
+		right = node->right->height + 1;
 	if (node->left != 0)
-		left = node->left->height;
+		left = node->left->height + 1;
 	return (right - left);
 }
 
