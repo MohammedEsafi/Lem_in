@@ -6,51 +6,11 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 11:14:45 by tbareich          #+#    #+#             */
-/*   Updated: 2020/02/25 11:36:27 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/02/25 14:37:52 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "avl.h"
-
-t_avl	*left_rot(t_avl *node)
-{
-	t_avl	*right;
-	t_avl	*tmp;
-
-	right = node->right;
-	tmp = right->left;
-	right->left = node;
-	node->right = tmp;
-	node->height = height(node);
-	right->height = height(right);
-	return (right);
-}
-
-t_avl	*right_rot(t_avl *node)
-{
-	t_avl	*left;
-	t_avl	*tmp;
-
-	left = node->left;
-	tmp = left->right;
-	left->right = node;
-	node->left = tmp;
-	node->height = height(node);
-	left->height = height(left);
-	return (left);
-}
-
-t_avl	*right_left_rot(t_avl *node)
-{
-	node->right = right_rot(node->right);
-	return (left_rot(node));
-}
-
-t_avl	*left_right_rot(t_avl *node)
-{
-	node->left = left_rot(node->left);
-	return (right_rot(node));
-}
 
 t_avl	*avl_insert(t_avl *root, int key)
 {
@@ -76,3 +36,55 @@ t_avl	*avl_insert(t_avl *root, int key)
 		right_left_rot(root);
 	return (root);
 }
+
+t_avl	*avl_insert_str(t_avl *root, char *str)
+{
+	int		balance;
+
+	if (root == 0)
+		return (new_node(0, str, ft_strlen(str)));
+	if (ft_strcmp(str, (const char *)root->content) < 0)
+		root->left = avl_insert_str(root->left, str);
+	else if (ft_strcmp(str, (const char *)root->content) > 0)
+		root->right = avl_insert_str(root->right, str);
+	else
+		return (root);
+	balance = get_balance(root);
+	root->height = height(root);
+	if (balance > 1 && ft_strcmp(str, root->right->content) > 0)
+		return (left_rot(root));
+	if (balance < -1 && ft_strcmp(str, root->left->content) < 0)
+		return (right_rot(root));
+	if (balance < -1 && ft_strcmp(str, root->left->content) > 0)
+		return (left_right_rot(root));
+	if (balance > 1 && ft_strcmp(str, root->right->content) < 0)
+		return (right_left_rot(root));
+	return (root);
+}
+
+t_avl	*avl_insert_elem(t_avl *root, void *content, size_t content_size,
+							int (*f)(void *, void *))
+{
+	int		balance;
+
+	if (root == 0)
+		return (new_node_elem(content, content_size));
+	if (f(content, root->content) < 0)
+		root->left = avl_insert_elem(root->left, content, content_size, f);
+	else if (f(content, root->content) > 0)
+		root->right = avl_insert_elem(root->right, content, content_size, f);
+	else
+		return (root);
+	balance = get_balance(root);
+	root->height = height(root);
+	if (balance > 1 && f(content, root->right->content) > 0)
+		return (left_rot(root));
+	if (balance < -1 && f(content, root->left->content) < 0)
+		return (right_rot(root));
+	if (balance < -1 && f(content, root->left->content) > 0)
+		return (left_right_rot(root));
+	if (balance > 1 && f(content, root->right->content) < 0)
+		return (right_left_rot(root));
+	return (root);
+}
+

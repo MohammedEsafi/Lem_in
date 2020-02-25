@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:39:20 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/25 10:11:03 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/02/25 14:34:08 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int			main(void)
 	while (1)
 	{
 		scanf("%s", s);
-		root = avl_insert_str(root, 0, s, ft_strlen(s));
+		root = avl_insert_str(root, s);
 		++i;
 		ft_printf("------------\n\n");
-		print_str_avl(root);
+		avl_print_str(root);
 		ft_printf("\n\n------------\n\n");
 	}
 	return (0);

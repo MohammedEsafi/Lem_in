@@ -6,19 +6,37 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 10:49:35 by tbareich          #+#    #+#             */
-/*   Updated: 2020/02/25 09:46:15 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/02/25 14:35:20 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "avl.h"
 #include "../libft/ft_printf/ft_printf.h"
 
-void		print_str_avl(t_avl *root)
+void		avl_print(t_avl *root)
 {
 	if (root == NULL)
 		return ;
-	print_str_avl(root->left);
+	avl_print(root->left);
+	ft_printf("%i\n", root->key);
+	avl_print(root->right);
+}
+
+void		avl_print_str(t_avl *root)
+{
+	if (root == NULL)
+		return ;
+	avl_print_str(root->left);
 	ft_printf("%d\t", root->height);
 	ft_printf("%s\n", (char *)root->content);
-	print_str_avl(root->right);
+	avl_print_str(root->right);
+}
+
+void		avl_print_elem(t_avl *root, void (*print)(t_avl *))
+{
+	if (root == NULL)
+		return ;
+	avl_print_elem(root->left, print);
+	print(root);
+	avl_print_elem(root->right, print);
 }

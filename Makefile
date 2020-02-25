@@ -6,7 +6,7 @@
 #    By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/20 13:51:29 by mesafi            #+#    #+#              #
-#    Updated: 2020/02/25 11:37:58 by tbareich         ###   ########.fr        #
+#    Updated: 2020/02/25 14:21:56 by tbareich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,11 @@ OBJS		= lem_in.o \
 				helpers/get_the_rooms.o \
 				helpers/ft_print_results.o \
 				helpers/get_the_links.o\
-				avl/avl.o \
-				avl/avl_insert_str.o\
+				avl/avl_rot.o \
+				avl/avl_find.o \
 				avl/avl_insert.o\
+				avl/avl_helpers.o\
+				avl/avl_create.o\
 				avl/avl_print.o
 				
 CC			= gcc
