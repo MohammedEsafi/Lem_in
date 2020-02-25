@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 11:50:32 by tbareich          #+#    #+#             */
-/*   Updated: 2020/02/24 15:09:55 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/02/25 11:34:11 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,8 @@ t_avl			*left_rot(t_avl *node);
 t_avl			*right_rot(t_avl *node);
 int				get_balance(t_avl *node);
 void			print_str_avl(t_avl *root);
+t_avl			*right_left_rot(t_avl *node);
+t_avl			*left_right_rot(t_avl *node);
+
 
 #endif

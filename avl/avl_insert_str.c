@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   avl_str_insert.c                                   :+:      :+:    :+:   */
+/*   avl_insert_str.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 06:46:57 by tbareich          #+#    #+#             */
-/*   Updated: 2020/02/24 20:03:57 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/02/25 11:43:17 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,8 @@ t_avl	*avl_insert_str(t_avl *root, int key, void *content, size_t size)
 	if (balance < -1 && ft_strcmp(content, root->left->content) < 0)
 		return (right_rot(root));
 	if (balance < -1 && ft_strcmp(content, root->left->content) > 0)
-	{
-		root->left = left_rot(root->left);
-		return (right_rot(root));
-	}
-	if (balance > 1 && ft_strcmp(content, root->right->content) > 0)
-	{
-		root->right = right_rot(root->right);
-		return (left_rot(root));
-	}
+		return (left_right_rot(root));
+	if (balance > 1 && ft_strcmp(content, root->right->content) < 0)
+		return (right_left_rot(root));
 	return (root);
 }

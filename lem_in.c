@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:39:20 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/24 20:53:15 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/02/25 10:11:03 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 int			main(void)
 {
 	t_avl	*root = 0;
+	char s[100];
 	// t_lem_in	*farm;
 
 	// farm = ft_init();
@@ -42,17 +43,15 @@ int			main(void)
 	// 	ft_error_handler(farm, 0);
 	// ft_print_results(&(farm->results));
 	// avl()
-	root = avl_insert_str(root, 0, "7", ft_strlen("1"));
-	root = avl_insert_str(root, 0, "8", ft_strlen("1"));
-	root = avl_insert_str(root, 3, "1", ft_strlen("1"));
-	root = avl_insert_str(root, 2, "2", ft_strlen("1"));
-	root = avl_insert_str(root, 0, "3", ft_strlen("1"));
-	root = avl_insert_str(root, 0, "6", ft_strlen("1"));
-	root = avl_insert_str(root, 0, "4", ft_strlen("1"));
-	root = avl_insert_str(root, 0, "5", ft_strlen("1"));
-	root = avl_insert_str(root, 0, "0", ft_strlen("1"));
-	root = avl_insert_str(root, 0, "9", ft_strlen("1"));
-	root = avl_insert_str(root, 0, "10", ft_strlen("10"));
-	print_str_avl(root);
+	int i = 0;
+	while (1)
+	{
+		scanf("%s", s);
+		root = avl_insert_str(root, 0, s, ft_strlen(s));
+		++i;
+		ft_printf("------------\n\n");
+		print_str_avl(root);
+		ft_printf("\n\n------------\n\n");
+	}
 	return (0);
 }
