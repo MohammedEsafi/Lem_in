@@ -6,7 +6,7 @@
 #    By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/29 23:34:49 by mesafi            #+#    #+#              #
-#    Updated: 2020/02/14 20:13:16 by mesafi           ###   ########.fr        #
+#    Updated: 2020/02/18 09:30:44 by mesafi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,6 +89,7 @@ OBJS		= ft_atoi.o \
 			ft_toupper.o \
 			get_int_len.o \
 			ft_strndup.o \
+			ft_strip.o \
 			ft_strjoin_free.o \
 			get_next_line.o \
 			ft_is_number.o \

@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 23:42:38 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/14 20:18:06 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/02/21 18:59:56 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,5 +140,6 @@ int				ft_dprintf(int fd, const char *format, ...);
 int				get_next_line(const int fd, char **line);
 void			ft_del(void *src, size_t len);
 int				ft_is_number(char *str);
+void			ft_strip(char **str, char *chars);
 
 #endif

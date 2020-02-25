@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 12:08:13 by mesafi            #+#    #+#             */
-/*   Updated: 2020/01/21 21:15:06 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/02/18 10:07:05 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static t_node	*create_node(unsigned int vertex)
 {
 	t_node		*node;
 
-	node = (t_node *)malloc(sizeof(t_node));
+	if (!(node = (t_node *)malloc(sizeof(t_node))))
+		return (NULL);
 	node->vertex = vertex;
 	node->next = NULL;
 	return (node);
