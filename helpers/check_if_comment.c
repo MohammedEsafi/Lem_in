@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 09:04:34 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/14 20:09:45 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/02/26 15:23:43 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		check_if_comment(char *line)
 	{
 		if (!ft_memcmp(line, "##start", 7))
 			return (1);
-		else if (!ft_memcmp(line, "##end", 7))
+		else if (!ft_memcmp(line, "##end", 5))
 			return (2);
 		else
 			return (3);

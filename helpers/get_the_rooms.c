@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 09:04:05 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/26 15:04:08 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/02/26 15:24:14 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,10 @@ int				get_the_rooms(char **line, t_lem_in *farm, int *key)
 		else if (respond == 0)
 			farm->rooms = avl_insert_elem(farm->rooms, element, sizeof(t_rooms),
 				rooms_cmp);
+		if (respond != -1 && status == 1)
+			farm->start = *key - 1;
+		else if (respond != -1 && status == 2)
+			farm->end = *key - 1;
 		if (respond != -1)
 			ft_memdel((void **)line);
 		if (respond == 1)
