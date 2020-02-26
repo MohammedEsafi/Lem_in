@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+         #
+#    By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/20 13:51:29 by mesafi            #+#    #+#              #
-#    Updated: 2020/02/17 19:03:59 by mesafi           ###   ########.fr        #
+#    Updated: 2020/02/24 10:52:44 by tbareich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@
 # Standard variables
 NAME		= lem-in
 LIBFT		= libft/libft.a
-FT_PRINTF	= libft/ft_printf/ft_printf.a
+FT_PRINTF	= libft/libftprintf.a
 HEADER		= lem_in.h
 OBJS		= lem_in.o \
 				helpers/ft_reader.o \
@@ -27,7 +27,11 @@ OBJS		= lem_in.o \
 				helpers/get_number_of_ants.o \
 				helpers/get_the_rooms.o \
 				helpers/ft_print_results.o \
-				helpers/get_the_links.o
+				helpers/get_the_links.o\
+				avl/avl.o \
+				avl/avl_str_insert.o\
+				avl/avl_print.o
+				
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 

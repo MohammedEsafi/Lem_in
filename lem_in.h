@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:40:03 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/21 18:56:10 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/02/25 10:36:52 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@
 
 # include "libft/libft.h"
 # include "libft/graph/graph.h"
+# include "libft/ft_printf/ft_printf.h"
 # include "libft/queue/queue.h"
+# include "avl/avl.h"
 # include <stdio.h>
 
 /*
@@ -41,7 +43,7 @@ typedef struct	s_rooms
 typedef struct	s_lem_in
 {
 	unsigned int	ants;
-	void			*rooms;
+	t_avl			*rooms;
 	t_graph			*graph;
 	void			*start;
 	void			*end;
