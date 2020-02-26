@@ -3,35 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   add_edge.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/20 12:08:13 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/18 10:07:05 by mesafi           ###   ########.fr       */
+/*   Created: 2020/02/18 19:43:06 by tbareich          #+#    #+#             */
+/*   Updated: 2020/02/18 19:43:07 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graph.h"
 #include <stdlib.h>
 
-static t_node	*create_node(unsigned int vertex)
+static t_node	*new_node(unsigned int key)
 {
 	t_node		*node;
 
-	if (!(node = (t_node *)malloc(sizeof(t_node))))
-		return (NULL);
-	node->vertex = vertex;
+	if ((node = (t_node *)malloc(sizeof(t_node))) == 0)
+		return (0);
+	node->key = key;
 	node->next = NULL;
 	return (node);
 }
 
-void			add_edge(t_graph *graph, unsigned int src, unsigned int dest)
+int				add_edge(t_graph *graph, unsigned int src, unsigned int dest)
 {
-	t_node		*node;
+	t_node	*node;
 
-	node = create_node(dest);
-	node->next = graph->lists[src];
-	graph->lists[src] = node;
-	node = create_node(src);
-	node->next = graph->lists[dest];
-	graph->lists[dest] = node;
+	if ((node = new_node(dest)) == 0)
+		return (-1);
+	node->next = graph->adj_list[src].head;
+	graph->adj_list[src].head = node;
+	if ((node = new_node(src)) == 0)
+	{
+		ft_memdel((void **)&node);
+		return (-1);
+	}
+	node->next = graph->adj_list[dest].head;
+	graph->adj_list[dest].head = node;
+	return (0);
 }

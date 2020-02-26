@@ -6,18 +6,17 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:39:20 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/26 11:36:43 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/02/26 15:09:47 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-// static void		print(t_avl *elem)
-// {
-// 	ft_printf("%-20s ｜ ", ((t_rooms *)elem->content)->name);
-// 	ft_printf("%-20d ｜ ", ((t_rooms *)elem->content)->key);
-// 	ft_printf("%-20d\n", elem->height);
-// }
+static void		print(t_avl *elem)
+{
+	ft_printf("%-20s", ((t_rooms *)elem->content)->name);
+	ft_printf("%-20d\n", ((t_rooms *)elem->content)->key);
+}
 
 static t_lem_in	*ft_init(void)
 {
@@ -30,10 +29,9 @@ static t_lem_in	*ft_init(void)
 	return (farm);
 }
 
-static void		ft_error_handler(t_lem_in *farm, int status)
+static void		ft_error_handler(t_lem_in *farm)
 {
-	if (status == 0)
-		ft_putstr("ERROR");
+	ft_putstr("ERROR");
 	free_queue(&(farm->results));
 	free(farm);
 	exit(1);
@@ -45,13 +43,14 @@ int			main(void)
 
 	farm = ft_init();
 	if (ft_reader(farm) == 1)
-		ft_error_handler(farm, 0);
-	ft_print_results(&(farm->results));
+		ft_error_handler(farm);
+	// ft_print_results(&(farm->results));
 
 	/* Display Avl */
-	// ft_printf("%-20s ｜ ", "name");
-	// ft_printf("%-20s ｜ ", "key");
-	// ft_printf("%-20s\n", "height");
-	// avl_print_elem(farm->rooms, print);
+	ft_printf("{red}%-20s", "Name");
+	ft_printf("%-20s{eoc}\n", "Key");
+	avl_print_elem(farm->rooms, print);
+	ft_printf("\n");
+	print_graph(farm->graph);
 	return (0);
 }

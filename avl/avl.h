@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 11:50:32 by tbareich          #+#    #+#             */
-/*   Updated: 2020/02/26 11:27:28 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/02/26 14:42:43 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ t_avl			*right_left_rot(t_avl *node);
 t_avl			*left_right_rot(t_avl *node);
 void			avl_print(t_avl *root);
 void			avl_print_elem(t_avl *root, void (*print)(t_avl *));
+t_avl			*avl_find_elem(t_avl *root, void *content,
+					int (*cmp)(void *, void *));
 
 #endif
