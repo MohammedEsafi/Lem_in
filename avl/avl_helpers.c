@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   avl.c                                              :+:      :+:    :+:   */
+/*   avl_helpers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 12:00:22 by tbareich          #+#    #+#             */
-/*   Updated: 2020/02/24 20:59:00 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/02/25 14:10:36 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,34 +23,6 @@ int		height(t_avl *node)
 	return (1 + max(node->left->height, node->right->height));
 }
 
-t_avl	*left_rot(t_avl *node)
-{
-	t_avl	*right;
-	t_avl	*tmp;
-
-	right = node->right;
-	tmp = right->left;
-	right->left = node;
-	node->right = tmp;
-	node->height = height(node);
-	right->height = height(right);
-	return (right);
-}
-
-t_avl	*right_rot(t_avl *node)
-{
-	t_avl	*left;
-	t_avl	*tmp;
-
-	left = node->left;
-	tmp = left->right;
-	left->right = node;
-	node->left = tmp;
-	node->height = height(node);
-	left->height = height(left);
-	return (left);
-}
-
 int		get_balance(t_avl *node)
 {
 	unsigned	right;
@@ -63,30 +35,4 @@ int		get_balance(t_avl *node)
 	if (node->left != 0)
 		left = node->left->height + 1;
 	return (right - left);
-}
-
-t_avl	*new_node(int key, void *content, size_t size)
-{
-	t_avl	*node;
-
-	if ((node = (t_avl *)malloc(sizeof(t_avl))) == 0)
-		return (0);
-	node->key = key;
-	node->height = 0;
-	node->left = 0;
-	node->right = 0;
-	if (content == NULL)
-	{
-		node->content = 0;
-		node->content_size = 0;
-		return (node);
-	}
-	if ((node->content = malloc(sizeof(size))) == 0)
-	{
-		ft_memdel((void **)&node);
-		return (0);
-	}
-	ft_memcpy(node->content, content, size);
-	node->content_size = size;
-	return (node);
 }

@@ -1,0 +1,25 @@
+{
+	"files.associations": {
+		"avl.h": "c",
+		"libft.h": "c",
+		"algorithm": "c",
+		"__hash_table": "c",
+		"__split_buffer": "c",
+		"array": "c",
+		"bitset": "c",
+		"deque": "c",
+		"string_view": "c",
+		"initializer_list": "c",
+		"iterator": "c",
+		"memory": "c",
+		"queue": "c",
+		"string": "c",
+		"unordered_map": "c",
+		"utility": "c",
+		"vector": "c",
+		"hashtable": "c",
+		"sstream": "c",
+		"ft_printf.h": "c",
+		"lem_in.h": "c"
+	}
+}

@@ -3,15 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+         #
+#    By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-<<<<<<< HEAD
 #    Created: 2019/03/29 23:34:49 by mesafi            #+#    #+#              #
-#    Updated: 2020/02/18 09:30:44 by mesafi           ###   ########.fr        #
-=======
-#    Created: 2019/03/29 23:44:50 by tbareich          #+#    #+#              #
-#    Updated: 2020/02/23 12:04:14 by tbareich         ###   ########.fr        #
->>>>>>> 901899b7db5a721649e2ab9c5f7664d58f515abe
+#    Updated: 2020/02/26 11:13:41 by mesafi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,82 +16,6 @@ FTPRINTF = ft_printf
 
 HEADER = libft.h
 
-<<<<<<< HEAD
-OBJS		= ft_atoi.o \
-			ft_bzero.o \
-			ft_del.o \
-			ft_isalnum.o \
-			ft_isalpha.o \
-			ft_isascii.o \
-			ft_isdigit.o \
-			ft_isprint.o \
-			ft_itoa.o \
-			ft_lstadd.o \
-			ft_lstadd_i.o \
-			ft_lstcount.o \
-			ft_lstdel.o \
-			ft_lstdelone.o \
-			ft_lstiter.o \
-			ft_lstmap.o \
-			ft_lstnew.o \
-			ft_lstpop.o \
-			ft_lstpush.o \
-			ft_lstrm.o \
-			ft_lstrm_i.o \
-			ft_memalloc.o \
-			ft_memccpy.o \
-			ft_memchr.o \
-			ft_memcmp.o \
-			ft_memcpy.o \
-			ft_memdel.o \
-			ft_memmove.o \
-			ft_memset.o \
-			ft_putchar.o \
-			ft_putchar_fd.o \
-			ft_putendl.o \
-			ft_putendl_fd.o \
-			ft_putlst.o \
-			ft_putnbr.o \
-			ft_putnbr_fd.o \
-			ft_putstr.o \
-			ft_putstr_fd.o \
-			ft_strcat.o \
-			ft_strchr.o \
-			ft_strclr.o \
-			ft_strcmp.o \
-			ft_strcpy.o \
-			ft_strdel.o \
-			ft_strdup.o \
-			ft_strequ.o \
-			ft_striter.o \
-			ft_striteri.o \
-			ft_strjoin.o \
-			ft_strlcat.o \
-			ft_strlen.o \
-			ft_strmap.o \
-			ft_strmapi.o \
-			ft_strncat.o \
-			ft_strncmp.o \
-			ft_strncpy.o \
-			ft_strnequ.o \
-			ft_strnew.o \
-			ft_strnstr.o \
-			ft_strrchr.o \
-			ft_strsplit.o \
-			ft_strstr.o \
-			ft_strsub.o \
-			ft_strtrim.o \
-			ft_tolower.o \
-			ft_toupper.o \
-			get_int_len.o \
-			ft_strndup.o \
-			ft_strip.o \
-			ft_strjoin_free.o \
-			get_next_line.o \
-			ft_is_number.o \
-			queue/init_queue.o \
-			queue/free_queue.o \
-=======
 OBJS = lib/bst_delete.o \
 			lib/bst_deletenode.o \
 			lib/bst_find.o \
@@ -179,7 +98,6 @@ OBJS = lib/bst_delete.o \
 			lib/get_next_line.o \
 			lib/ft_strip.o \
 			lib/ft_is_number.o \
->>>>>>> 901899b7db5a721649e2ab9c5f7664d58f515abe
 			queue/dequeue.o \
 			queue/enqueue.o \
 			queue/init_queue.o \

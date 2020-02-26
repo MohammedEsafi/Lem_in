@@ -6,13 +6,18 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 09:04:05 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/18 09:16:38 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/02/26 11:39:16 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lem_in.h"
 
-int		ft_fill(char *line, t_rooms *element, int status)
+static int		rooms_cmp(void *elem1, void *elem2)
+{
+	return (ft_strcmp(((t_rooms *)elem1)->name, ((t_rooms *)elem2)->name));
+}
+
+static int		ft_fill(char *line, t_rooms *element, int status, int *key)
 {
 	char	*indicator;
 
@@ -30,10 +35,12 @@ int		ft_fill(char *line, t_rooms *element, int status)
 	if (*line == 'L')
 		return (1);
 	element->name = ft_strdup(line);
+	element->key = *key;
+	++(*key);
 	return (0);
 }
 
-int		get_the_rooms(t_lem_in *farm)
+int				get_the_rooms(t_lem_in *farm, int *key)
 {
 	t_rooms		*element;
 	int			respond;
@@ -56,10 +63,11 @@ int		get_the_rooms(t_lem_in *farm)
 			ft_memdel((void **)line);
 			return (1);
 		}
-		if ((respond = ft_fill(line, element, status)) == -1)
-			free(element);
+		if ((respond = ft_fill(line, element, status, key)) == -1)
+			ft_memdel((void **)&element);
 		else if (respond == 0)
-			ft_printf(""); // insert `var element` to ...
+			farm->rooms = avl_insert_elem(farm->rooms, element, sizeof(t_rooms),
+				rooms_cmp);
 		ft_memdel((void **)&line);
 		if (respond == 1)
 			return (1);

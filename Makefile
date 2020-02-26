@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+         #
+#    By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/20 13:51:29 by mesafi            #+#    #+#              #
-#    Updated: 2020/02/24 10:52:44 by tbareich         ###   ########.fr        #
+#    Updated: 2020/02/26 11:13:27 by mesafi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,9 +27,12 @@ OBJS		= lem_in.o \
 				helpers/get_number_of_ants.o \
 				helpers/get_the_rooms.o \
 				helpers/ft_print_results.o \
-				helpers/get_the_links.o\
-				avl/avl.o \
-				avl/avl_str_insert.o\
+				helpers/get_the_links.o \
+				avl/avl_rot.o \
+				avl/avl_find.o \
+				avl/avl_insert.o \
+				avl/avl_helpers.o \
+				avl/avl_create.o \
 				avl/avl_print.o
 				
 CC			= gcc

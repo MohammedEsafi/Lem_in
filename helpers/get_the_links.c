@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:02:28 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/21 11:19:36 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/02/26 11:51:15 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ static int	ft_get_edge(t_lem_in *farm, char *line)
 	if (!(middle = ft_strchr(line, '-')))
 		return (1);
 	*middle++ = '\0';
-	printf("1-> %s\n", line);
-	printf("2-> %s\n", middle);
+	// printf("1-> %s\n", line);
+	// printf("2-> %s\n", middle);
 	(void)farm;
 	return (0);
 }
 
-int			get_the_links(t_lem_in *farm)
+int			get_the_links(t_lem_in *farm, int key)
 {
 	char	*line;
 	int		respond;
 
-	if (!(farm->graph = create_graph(5)))
+	if (!(farm->graph = create_graph(key)))
 		return (1);
 	while (get_next_line(0, &line))
 	{

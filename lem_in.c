@@ -6,11 +6,18 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:39:20 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/25 10:32:29 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/02/26 11:36:43 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+// static void		print(t_avl *elem)
+// {
+// 	ft_printf("%-20s ｜ ", ((t_rooms *)elem->content)->name);
+// 	ft_printf("%-20d ｜ ", ((t_rooms *)elem->content)->key);
+// 	ft_printf("%-20d\n", elem->height);
+// }
 
 static t_lem_in	*ft_init(void)
 {
@@ -18,6 +25,7 @@ static t_lem_in	*ft_init(void)
 
 	farm = (t_lem_in *)malloc(sizeof(t_lem_in));
 	farm->ants = 0;
+	farm->rooms = NULL;
 	init_queue(&(farm->results));
 	return (farm);
 }
@@ -33,25 +41,17 @@ static void		ft_error_handler(t_lem_in *farm, int status)
 
 int			main(void)
 {
-	// t_avl	*root = 0;
 	t_lem_in	*farm;
 
 	farm = ft_init();
 	if (ft_reader(farm) == 1)
 		ft_error_handler(farm, 0);
 	ft_print_results(&(farm->results));
-	// avl()
-	// root = avl_insert_str(root, 0, "7", ft_strlen("1"));
-	// root = avl_insert_str(root, 0, "8", ft_strlen("1"));
-	// root = avl_insert_str(root, 3, "1", ft_strlen("1"));
-	// root = avl_insert_str(root, 2, "2", ft_strlen("1"));
-	// root = avl_insert_str(root, 0, "3", ft_strlen("1"));
-	// root = avl_insert_str(root, 0, "6", ft_strlen("1"));
-	// root = avl_insert_str(root, 0, "4", ft_strlen("1"));
-	// root = avl_insert_str(root, 0, "5", ft_strlen("1"));
-	// root = avl_insert_str(root, 0, "0", ft_strlen("1"));
-	// root = avl_insert_str(root, 0, "9", ft_strlen("1"));
-	// root = avl_insert_str(root, 0, "10", ft_strlen("10"));
-	// print_str_avl(root);
+
+	/* Display Avl */
+	// ft_printf("%-20s ｜ ", "name");
+	// ft_printf("%-20s ｜ ", "key");
+	// ft_printf("%-20s\n", "height");
+	// avl_print_elem(farm->rooms, print);
 	return (0);
 }
