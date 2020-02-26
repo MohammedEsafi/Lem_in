@@ -6,7 +6,7 @@
 #    By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/20 13:51:29 by mesafi            #+#    #+#              #
-#    Updated: 2020/02/25 14:21:56 by tbareich         ###   ########.fr        #
+#    Updated: 2020/02/26 13:17:27 by tbareich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ OBJS		= lem_in.o \
 				avl/avl_insert.o\
 				avl/avl_helpers.o\
 				avl/avl_create.o\
+				avl/avl_inorder.o\
 				avl/avl_print.o
 				
 CC			= gcc
