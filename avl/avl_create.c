@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 14:10:22 by tbareich          #+#    #+#             */
-/*   Updated: 2020/02/25 14:16:47 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/02/26 11:47:03 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_avl	*new_node(int key, void *content, size_t size)
 		node->content_size = 0;
 		return (node);
 	}
-	if ((node->content = malloc(sizeof(size))) == 0)
+	if ((node->content = malloc(size)) == 0)
 	{
 		ft_memdel((void **)&node);
 		return (0);
@@ -54,7 +54,7 @@ t_avl	*new_node_elem(void *content, size_t size)
 		node->content_size = 0;
 		return (node);
 	}
-	if ((node->content = malloc(sizeof(size))) == 0)
+	if ((node->content = malloc(size)) == 0)
 	{
 		ft_memdel((void **)&node);
 		return (0);
