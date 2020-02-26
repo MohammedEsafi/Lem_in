@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   avl_insert.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 11:14:45 by tbareich          #+#    #+#             */
-/*   Updated: 2020/02/25 14:37:52 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/02/26 11:02:26 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,3 @@ t_avl	*avl_insert_elem(t_avl *root, void *content, size_t content_size,
 		return (right_left_rot(root));
 	return (root);
 }
-

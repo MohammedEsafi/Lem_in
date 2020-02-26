@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/30 18:42:33 by tbareich          #+#    #+#             */
-/*   Updated: 2020/02/23 11:58:51 by tbareich         ###   ########.fr       */
+/*   Created: 2019/03/30 23:42:38 by mesafi            #+#    #+#             */
+/*   Updated: 2020/02/26 10:09:11 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,8 @@ int				min(int a, int b);
 
 char			*ft_strjoin_free(char const *s1, char const *s2, int option);
 char			*ft_strdup_free(char **s1);
+int				ft_printf(const char *format, ...);
+int				ft_dprintf(int fd, const char *format, ...);
 void			*ft_realloc(void *ptr, size_t pre_size, size_t size);
 int				get_int_len(int nbr);
 

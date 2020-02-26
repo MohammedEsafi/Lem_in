@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_if_comment.c                                 :+:      :+:    :+:   */
+/*   ft_strip.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/12 09:04:34 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/26 15:23:43 by mesafi           ###   ########.fr       */
+/*   Created: 2020/02/18 09:10:19 by mesafi            #+#    #+#             */
+/*   Updated: 2020/02/21 19:27:19 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lem_in.h"
+#include "libft.h"
 
-int		check_if_comment(char *line)
+void	ft_strip(char **str, char *chars)
 {
-	if (*line == '#')
-	{
-		if (!ft_memcmp(line, "##start", 7))
-			return (1);
-		else if (!ft_memcmp(line, "##end", 5))
-			return (2);
-		else
-			return (3);
-	}
-	return (0);
+	int		i;
+	int		j;
+
+	if (!str || !(*str))
+		return ;
+	i = 0;
+	j = ft_strlen(*str) - 1;
+	while ((*str)[i] != '\0' && ft_strchr(chars, (*str)[i]) != NULL)
+		++i;
+	while ((*str)[j] != '\0' && ft_strchr(chars, (*str)[j]) != NULL)
+		--j;
+	free(*str);
+	if (j < i)
+		*str = ft_strdup("");
+	else
+		*str = ft_strsub(*str, i, j - i + 1);
 }

@@ -3,55 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:39:20 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/25 15:22:57 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/02/26 15:22:18 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-#include "avl/avl.h"
 
-// static t_lem_in	*ft_init(void)
-// {
-// 	t_lem_in	*farm;
+static void		print(t_avl *elem)
+{
+	ft_printf("%-20s", ((t_rooms *)elem->content)->name);
+	ft_printf("%-20d\n", ((t_rooms *)elem->content)->key);
+}
 
-// 	farm = (t_lem_in *)malloc(sizeof(t_lem_in));
-// 	farm->ants = 0;
-// 	init_queue(&(farm->results));
-// 	return (farm);
-// }
+static t_lem_in	*ft_init(void)
+{
+	t_lem_in	*farm;
 
-// static void		ft_error_handler(t_lem_in *farm, int status)
-// {
-// 	if (status == 0)
-// 		ft_putstr("ERROR");
-// 	free_queue(&(farm->results));
-// 	free(farm);
-// 	exit(1);
-// }
+	farm = (t_lem_in *)malloc(sizeof(t_lem_in));
+	farm->ants = 0;
+	farm->rooms = NULL;
+	farm->start = -1;
+	farm->end = -1;
+	init_queue(&(farm->results));
+	return (farm);
+}
+
+static void		ft_error_handler(t_lem_in *farm)
+{
+	ft_putstr("ERROR");
+	free_queue(&(farm->results));
+	free(farm);
+	exit(1);
+}
 
 int			main(void)
 {
-	t_avl	*root = 0;
-	char s[100];
-	// t_lem_in	*farm;
+	t_lem_in	*farm;
 
-	// farm = ft_init();
-	// if (ft_reader(farm) == 1)
-	// 	ft_error_handler(farm, 0);
+	farm = ft_init();
+	if (ft_reader(farm) == 1)
+		ft_error_handler(farm);
 	// ft_print_results(&(farm->results));
-	// avl()
-	int i = 0;
-	while (1)
-	{
-		scanf("%s", s);
-		root = avl_insert_str(root, s);
-		++i;
-		ft_printf("------------\n\n");
-		avl_print_str(root);
-		ft_printf("\n\n------------\n\n");
-	}
+
+	/* Display Avl */
+	ft_printf("{red}%-20s", "Name");
+	ft_printf("%-20s{eoc}\n", "Key");
+	avl_print_elem(farm->rooms, print);
+	ft_printf("\n");
+	print_graph(farm->graph);
+
+	ft_printf("\n");
+	ft_printf("{red}start :{eoc} %d\n", farm->start);
+	ft_printf("{red}end   :{eoc} %d\n", farm->end);
 	return (0);
 }
