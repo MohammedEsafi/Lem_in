@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:39:20 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/26 15:22:18 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/02/27 10:10:40 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,18 @@ static void		print(t_avl *elem)
 {
 	ft_printf("%-20s", ((t_rooms *)elem->content)->name);
 	ft_printf("%-20d\n", ((t_rooms *)elem->content)->key);
+}
+
+static void		ft_print_data(t_lem_in *farm)
+{
+	ft_printf("{red}%-20s", "Name");
+	ft_printf("%-20s{eoc}\n", "Key");
+	avl_print_elem(farm->rooms, print);
+	ft_printf("\n");
+	print_graph(farm->graph);
+	ft_printf("\n");
+	ft_printf("{red}start :{eoc} %d\n", farm->start);
+	ft_printf("{red}end   :{eoc} %d\n", farm->end);
 }
 
 static t_lem_in	*ft_init(void)
@@ -46,17 +58,9 @@ int			main(void)
 	farm = ft_init();
 	if (ft_reader(farm) == 1)
 		ft_error_handler(farm);
+	if (ft_finder(farm) == 1)
+		ft_error_handler(farm);
 	// ft_print_results(&(farm->results));
-
-	/* Display Avl */
-	ft_printf("{red}%-20s", "Name");
-	ft_printf("%-20s{eoc}\n", "Key");
-	avl_print_elem(farm->rooms, print);
-	ft_printf("\n");
-	print_graph(farm->graph);
-
-	ft_printf("\n");
-	ft_printf("{red}start :{eoc} %d\n", farm->start);
-	ft_printf("{red}end   :{eoc} %d\n", farm->end);
+	ft_print_data(farm);
 	return (0);
 }

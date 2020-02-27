@@ -6,11 +6,19 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 09:04:05 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/26 15:24:14 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/02/27 10:11:35 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lem_in.h"
+
+static void		fill_start_end(t_lem_in *farm, int status, int key)
+{
+	if (status == 1)
+		farm->start = key;
+	else if (status == 2)
+		farm->end = key;
+}
 
 static int		rooms_cmp(void *elem1, void *elem2)
 {
@@ -65,12 +73,11 @@ int				get_the_rooms(char **line, t_lem_in *farm, int *key)
 		if ((respond = ft_fill(*line, element, status, key)) == -1)
 			ft_memdel((void **)&element);
 		else if (respond == 0)
+		{
+			fill_start_end(farm, status, *key - 1);
 			farm->rooms = avl_insert_elem(farm->rooms, element, sizeof(t_rooms),
 				rooms_cmp);
-		if (respond != -1 && status == 1)
-			farm->start = *key - 1;
-		else if (respond != -1 && status == 2)
-			farm->end = *key - 1;
+		}
 		if (respond != -1)
 			ft_memdel((void **)line);
 		if (respond == 1)
