@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_the_links.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:02:28 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/26 15:08:50 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/02/26 20:50:01 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int			get_the_links(char **line, t_lem_in *farm, int key)
 	respond = 1;
 	if (!(farm->graph = create_graph(key)))
 		return (1);
-	while (TRUE && respond > 0)
+	while (*line && respond > 0)
 	{
 		enqueue(&(farm->results), ft_lstnew(*line, ft_strlen(*line) + 1));
 		respond = !(check_if_comment(*line));
