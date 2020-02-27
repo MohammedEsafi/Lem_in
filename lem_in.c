@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:39:20 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/27 10:10:40 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/02/27 10:43:57 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static t_lem_in	*ft_init(void)
 
 	farm = (t_lem_in *)malloc(sizeof(t_lem_in));
 	farm->ants = 0;
-	farm->rooms = NULL;
+	farm->rooms = 0;
+	farm->graph = 0;
 	farm->start = -1;
 	farm->end = -1;
 	init_queue(&(farm->results));
@@ -48,7 +49,6 @@ static void		ft_error_handler(t_lem_in *farm)
 	ft_putstr("ERROR");
 	free_queue(&(farm->results));
 	free(farm);
-	exit(1);
 }
 
 int			main(void)
