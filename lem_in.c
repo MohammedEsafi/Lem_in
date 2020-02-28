@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:39:20 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/27 10:43:57 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/02/28 08:28:45 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static t_lem_in	*ft_init(void)
 
 static void		ft_error_handler(t_lem_in *farm)
 {
-	ft_putstr("ERROR");
+	ft_putstr("ERROR\n");
 	free_queue(&(farm->results));
 	free(farm);
 }
