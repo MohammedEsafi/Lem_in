@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+         #
+#    By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/20 13:51:29 by mesafi            #+#    #+#              #
-#    Updated: 2020/02/27 10:11:06 by mesafi           ###   ########.fr        #
+#    Updated: 2020/02/27 18:50:25 by tbareich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,9 +57,9 @@ build:
 	@if [ ! -f $(NAME) ] ; then \
 		echo "⇾ building $(NAME)..." ; \
 	fi;
+	@make -s -C libft
 
 $(NAME): $(OBJS) $(HEADER)
-	@make -s -C libft
 	@if [ ! -f $(NAME) ] ; then \
 		echo "⇾ $(NAME) $(GREEN)done$(RESET)"; \
 	else \

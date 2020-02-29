@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_the_links.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:02:28 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/27 10:44:12 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/02/27 18:56:06 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static int	ft_get_edge(t_lem_in *farm, char *line)
 
 	if (!(middle = ft_strchr(line, '-')))
 		return (1);
-	*middle++ = '\0';
+	*middle = '\0';
+	++middle;
 	if (!(room1 = avl_find_elem(farm->rooms, line, find_room)))
 		return (1);
 	if (!(room2 = avl_find_elem(farm->rooms, middle, find_room)))

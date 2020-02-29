@@ -1,14 +1,14 @@
 10
-Ann is a monkey 32 6
-##start
-Banana 16 4
 #comment
 Cat 16 3
-Dog 16 5
-Egg 9 3
+##start
+Banana 16 4
 ##end
 Frog 1 5
+Egg 9 3
 Golf 4 8
+Ann is a monkey 32 6
+Dog 16 5
 Hello 9 5
 Hello-Dog
 Hello-Frog
