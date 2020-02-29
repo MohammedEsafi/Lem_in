@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_finder.c                                        :+:      :+:    :+:   */
+/*   edmonds_karp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/27 10:09:49 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/29 15:08:21 by mesafi           ###   ########.fr       */
+/*   Created: 2020/02/29 15:08:41 by mesafi            #+#    #+#             */
+/*   Updated: 2020/02/29 15:32:53 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lem_in.h"
 
-static int	is_validated(t_lem_in *farm)
+int		edmonds_karp(t_lem_in *farm)
 {
-	if (farm->start == -1 || farm->end == -1)
-		return (1);
-	return (0);
-}
-
-int			ft_finder(t_lem_in *farm)
-{
-	if (is_validated(farm) == 1)
-		return (1);
-	if (edmonds_karp(farm) == 1)
-		return (1);
+	(void)farm;
 	return (0);
 }

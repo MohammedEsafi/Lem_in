@@ -6,7 +6,7 @@
 #    By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/20 13:51:29 by mesafi            #+#    #+#              #
-#    Updated: 2020/02/27 10:11:06 by mesafi           ###   ########.fr        #
+#    Updated: 2020/02/29 15:11:49 by mesafi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,8 +34,9 @@ OBJS		= lem_in.o \
 				avl/avl_helpers.o \
 				avl/avl_create.o \
 				avl/avl_print.o \
-				helpers/ft_finder.o
-				
+				helpers/ft_finder.o \
+				helpers/edmonds_karp.o
+
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 
