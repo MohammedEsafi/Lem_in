@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:39:20 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/29 15:49:27 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/02/29 15:54:42 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,8 @@ int			main(void)
 
 	farm = ft_init();
 	if (ft_reader(farm) == 1)
-	{
 		ft_error_handler(farm);
-		return (1);
-	}
 	if (ft_finder(farm) == 1)
-	{
 		ft_error_handler(farm);
 	ft_print_results(&(farm->results));
 	// ft_print_data(farm);
