@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:02:28 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/27 18:56:06 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/02/29 19:56:57 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			get_the_links(char **line, t_lem_in *farm, int key)
 		return (1);
 	while (*line != NULL && respond > 0)
 	{
-		enqueue(&(farm->results), ft_lstnew(*line, ft_strlen(*line) + 1));
+		enqueue(&(farm->results), *line, ft_strlen(*line) + 1);
 		respond = !(check_if_comment(*line));
 		if (respond != 0)
 			respond = ft_get_edge(farm, *line);
