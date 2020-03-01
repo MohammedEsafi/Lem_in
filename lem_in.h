@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:40:03 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/01 13:02:15 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/03/01 14:32:32 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int				get_the_rooms(char **line, t_lem_in *farm, int *key);
 void			ft_print_results(t_queue *results);
 int				get_the_links(char **line, t_lem_in *farm, int key);
 int				ft_finder(t_lem_in *farm);
-int				edmonds_karp(t_lem_in *farm, char *visited,
+int				edmonds_karp(t_lem_in *farm, char *seen,
 					char *resid_capacity);
 int				routes_maker(t_lem_in *farm, char *resid_capacity);
 
