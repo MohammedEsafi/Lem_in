@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_edge.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 19:43:06 by tbareich          #+#    #+#             */
-/*   Updated: 2020/02/29 15:04:47 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/01 12:14:27 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ static t_node	*new_node(unsigned int key)
 	if ((node = (t_node *)malloc(sizeof(t_node))) == 0)
 		return (0);
 	node->key = key;
-	node->flow = 0;
-	node->capacity = 1;
 	node->next = NULL;
 	return (node);
 }

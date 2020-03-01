@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dequeue.c                                          :+:      :+:    :+:   */
+/*   routes_maker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/18 11:28:29 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/29 19:47:25 by tbareich         ###   ########.fr       */
+/*   Created: 2020/03/01 13:04:09 by tbareich          #+#    #+#             */
+/*   Updated: 2020/03/01 13:05:05 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "queue.h"
+#include "../lem_in.h"
 
-void		*dequeue(t_queue *queue)
+int				routes_maker(t_lem_in *farm, char *resid_capacity)
 {
-	t_list	*tmp;
-	void	*content;
-
-	if (queue->front == NULL)
-		return (NULL);
-	queue->size -= 1;
-	tmp = queue->front;
-	queue->front = queue->front->next;
-	if (queue->front == NULL)
-		queue->last = NULL;
-	content = tmp->content;
-	ft_memdel((void **)&tmp);
-	return (content);
+	(void)farm;
+	(void)resid_capacity;
+	return (1);
 }
