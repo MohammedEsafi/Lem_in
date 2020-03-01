@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graph.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 19:42:26 by tbareich          #+#    #+#             */
-/*   Updated: 2020/02/29 14:58:30 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/01 12:15:57 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ typedef struct	s_graph
 typedef struct	s_node
 {
 	unsigned		key;
-	unsigned		flow;
-	unsigned		capacity;
 	struct s_node	*next;
 }				t_node;
 
