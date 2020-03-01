@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:39:20 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/01 12:59:36 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/03/01 17:59:16 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 // static void		print(t_avl *elem)
 // {
-// 	ft_printf("%-20s", ((t_rooms *)elem->content)->name);
-// 	ft_printf("%-20d\n", ((t_rooms *)elem->content)->key);
+// 	ft_printf("%-20s", ((t_room *)elem->content)->name);
+// 	ft_printf("%-20d\n", ((t_room *)elem->content)->key);
 // }
 
 // static void		ft_print_data(t_lem_in *farm)
@@ -36,7 +36,7 @@ static t_lem_in	*ft_init(void)
 
 	farm = (t_lem_in *)malloc(sizeof(t_lem_in));
 	farm->circuit.score = MAX_INT;
-	farm->circuit.size = -1;
+	farm->circuit.size = 0;
 	farm->circuit.routes = NULL;
 	farm->ants = 0;
 	farm->rooms = NULL;
@@ -64,7 +64,7 @@ int			main(void)
 		ft_error_handler(farm);
 	if (ft_finder(farm) == 1)
 		ft_error_handler(farm);
-	ft_print_results(&(farm->results));
+	// ft_print_results(&(farm->results));
 	// ft_print_data(farm);
 	return (0);
 }

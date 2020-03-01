@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:40:03 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/01 14:32:32 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/03/01 16:33:14 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,16 @@ typedef struct	s_circuit
 {
 	unsigned	score;
 	unsigned	size;
-	t_path		*routes;
+	t_list		*routes;
 }				t_circuit;
 
-typedef struct	s_rooms
+typedef struct	s_room
 {
 	char	*name;
 	int		key;
 	int		coord_x;
 	int		coord_y;
-}				t_rooms;
+}				t_room;
 
 typedef struct	s_lem_in
 {
@@ -81,6 +81,6 @@ int				get_the_links(char **line, t_lem_in *farm, int key);
 int				ft_finder(t_lem_in *farm);
 int				edmonds_karp(t_lem_in *farm, char *seen,
 					char *resid_capacity);
-int				routes_maker(t_lem_in *farm, char *resid_capacity);
+int				routes_maker(t_lem_in *farm, char *seen, char *resid_capacity);
 
 #endif

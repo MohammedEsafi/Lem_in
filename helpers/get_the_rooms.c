@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_the_rooms.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 09:04:05 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/29 19:56:37 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/03/01 13:23:16 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ static void		fill_start_end(t_lem_in *farm, int status, int key)
 
 static int		rooms_cmp(void *elem1, void *elem2)
 {
-	return (ft_strcmp(((t_rooms *)elem1)->name, ((t_rooms *)elem2)->name));
+	return (ft_strcmp(((t_room *)elem1)->name, ((t_room *)elem2)->name));
 }
 
-static int		ft_fill(char *line, t_rooms *element, int status, int *key)
+static int		ft_fill(char *line, t_room *element, int status, int *key)
 {
 	char	*indicator;
 
@@ -50,7 +50,7 @@ static int		ft_fill(char *line, t_rooms *element, int status, int *key)
 
 int				get_the_rooms(char **line, t_lem_in *farm, int *key)
 {
-	t_rooms		*element;
+	t_room		*element;
 	int			respond;
 	int			status;
 
@@ -65,7 +65,7 @@ int				get_the_rooms(char **line, t_lem_in *farm, int *key)
 			ft_memdel((void **)line);
 			continue ;
 		}
-		if (!(element = (t_rooms *)malloc(sizeof(t_rooms))))
+		if (!(element = (t_room *)malloc(sizeof(t_room))))
 		{
 			ft_memdel((void **)*line);
 			return (1);
@@ -75,7 +75,7 @@ int				get_the_rooms(char **line, t_lem_in *farm, int *key)
 		else if (respond == 0)
 		{
 			fill_start_end(farm, status, *key - 1);
-			farm->rooms = avl_insert_elem(farm->rooms, element, sizeof(t_rooms),
+			farm->rooms = avl_insert_elem(farm->rooms, element, sizeof(t_room),
 				rooms_cmp);
 		}
 		if (respond != -1)
