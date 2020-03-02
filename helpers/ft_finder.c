@@ -3,38 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_finder.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 10:09:49 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/02 15:14:26 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/03/02 18:04:21 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lem_in.h"
 
-static void	ft_print_circuit(t_lem_in *farm)
-{
-	t_list	*node;
-	t_list	*list;
-	t_path	*path;
+// static void	ft_print_circuit(t_lem_in *farm)
+// {
+// 	t_list	*node;
+// 	t_list	*list;
+// 	t_path	*path;
 
-	node = farm->circuit.routes;
-	ft_printf("\nsize: %u\n", farm->circuit.size);
-	ft_printf("score: %u\n", farm->circuit.score);
-	while (node != NULL)
-	{
-		path = (t_path *)(node->content);
-		list = path->list;
-		while (list)
-		{
-			ft_printf("%s -> ", ((t_room *)(farm->graph->
-						adj_list[*((int *)(list->content))].content))->name);
-			list = list->next;
-		}
-		ft_printf("\n");
-		node = node->next;
-	}
-}
+// 	node = farm->circuit.routes;
+// 	ft_printf("\nsize: %u\n", farm->circuit.size);
+// 	ft_printf("score: %u\n", farm->circuit.score);
+// 	while (node != NULL)
+// 	{
+// 		path = (t_path *)(node->content);
+// 		list = path->list;
+// 		while (list)
+// 		{
+// 			ft_printf("%s -> ", ((t_room *)(farm->graph->
+// 						adj_list[*((int *)(list->content))].content))->name);
+// 			list = list->next;
+// 		}
+// 		ft_printf("\n");
+// 		node = node->next;
+// 	}
+// }
 
 static int	is_validated(t_lem_in *farm)
 {
@@ -65,7 +65,7 @@ int			ft_finder(t_lem_in *farm)
 			break ;
 		if (routes_maker(farm, seen, resid_capacity) == 1)
 			break ;
-		ft_print_circuit(farm);
+		// ft_print_circuit(farm);
 	}
-	return (!farm->circuit.size);
+	return (!farm->circuits.len);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:40:03 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/02 16:04:16 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/03/02 18:18:38 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include "libft/graph/graph.h"
 # include "libft/ft_printf/ft_printf.h"
 # include "libft/queue/queue.h"
+# include "libft/array_list/array_list.h"
 # include "avl/avl.h"
 # include <stdio.h>
 
@@ -66,8 +67,9 @@ typedef struct	s_lem_in
 	int				start;
 	int				end;
 	t_queue			results;
-	t_circuit		circuit;
-	t_circuit		tmp_circuit;
+	int				best_score;
+	int				best_circuit;
+	t_array_list	circuits;
 }				t_lem_in;
 
 /*

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:39:20 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/02 17:22:59 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/03/02 18:19:01 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,14 @@ static t_lem_in	*ft_init(void)
 	t_lem_in	*farm;
 
 	farm = (t_lem_in *)malloc(sizeof(t_lem_in));
-	farm->circuit.score = MAX_INT;
-	farm->circuit.size = 0;
-	farm->circuit.routes = NULL;
-	farm->tmp_circuit.routes = NULL;
-	farm->tmp_circuit.score = MAX_INT;
-	farm->tmp_circuit.size = 0;
+	// farm->circuit.score = MAX_INT;
+	// farm->circuit.size = 0;
+	// farm->circuit.routes = NULL;
+	// farm->tmp_circuit.routes = NULL;
+	// farm->tmp_circuit.score = MAX_INT;
+	// farm->tmp_circuit.size = 0;
+	farm->best_score = MAX_INT;
+	farm->best_circuit = -1;
 	farm->ants = 0;
 	farm->rooms = NULL;
 	farm->graph = NULL;
