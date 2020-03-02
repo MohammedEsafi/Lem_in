@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:40:03 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/01 16:33:14 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/03/02 16:04:16 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 
 typedef struct	s_path
 {
+	int			ants;
 	unsigned	size;
 	t_list		*list;
 }				t_path;
@@ -66,6 +67,7 @@ typedef struct	s_lem_in
 	int				end;
 	t_queue			results;
 	t_circuit		circuit;
+	t_circuit		tmp_circuit;
 }				t_lem_in;
 
 /*
@@ -76,7 +78,7 @@ int				ft_reader(t_lem_in *farm);
 int				check_if_comment(char *line);
 int				get_number_of_ants(char **line, t_lem_in *farm);
 int				get_the_rooms(char **line, t_lem_in *farm, int *key);
-void			ft_print_results(t_queue *results);
+void			ft_print_results(t_lem_in *farm);
 int				get_the_links(char **line, t_lem_in *farm, int key);
 int				ft_finder(t_lem_in *farm);
 int				edmonds_karp(t_lem_in *farm, char *seen,

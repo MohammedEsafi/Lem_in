@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 10:09:49 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/01 18:55:43 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/03/02 15:14:26 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static void	ft_print_circuit(t_lem_in *farm)
 		list = path->list;
 		while (list)
 		{
-			ft_printf("%s -> ", ((t_room *)(farm->graph->adj_list[*((int *)(list->content))].content))->name);
+			ft_printf("%s -> ", ((t_room *)(farm->graph->
+						adj_list[*((int *)(list->content))].content))->name);
 			list = list->next;
 		}
 		ft_printf("\n");
@@ -64,7 +65,7 @@ int			ft_finder(t_lem_in *farm)
 			break ;
 		if (routes_maker(farm, seen, resid_capacity) == 1)
 			break ;
+		ft_print_circuit(farm);
 	}
-	ft_print_circuit(farm);
-	return (0);
+	return (!farm->circuit.size);
 }

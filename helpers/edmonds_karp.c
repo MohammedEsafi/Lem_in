@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 16:01:50 by tbareich          #+#    #+#             */
-/*   Updated: 2020/03/01 19:07:39 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/03/02 14:29:16 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,12 @@ int		edmonds_karp(t_lem_in *farm, char *seen, char *resid_capacity)
 					&& resid_capacity[current * farm->graph->v + prev[current]]
 					&& resid_capacity[current * farm->graph->v + node->key]
 					&& resid_capacity[node->key * farm->graph->v + current])
-					{
 						visited[current] = 0;
-					}
 					else
 					{
 						enqueue(&q, (int*)&node->key, sizeof(int));
 						visited[node->key] = 1;
+						visited[current] = 1;
 						prev[node->key] = current;
 					}
 				}
@@ -60,6 +59,7 @@ int		edmonds_karp(t_lem_in *farm, char *seen, char *resid_capacity)
 				{
 					enqueue(&q, (int*)&node->key, sizeof(int));
 					visited[node->key] = 1;
+					visited[current] = 1;
 					prev[node->key] = current;
 				}
 				if ((int)node->key == farm->end)
@@ -79,16 +79,8 @@ int		edmonds_karp(t_lem_in *farm, char *seen, char *resid_capacity)
 		return (1);
 	while (current != farm->start)
 	{
-		if (resid_capacity[prev[current] * farm->graph->v + current] == resid_capacity[current * farm->graph->v + prev[current]])
-		{
-			resid_capacity[prev[current] * farm->graph->v + current] = 0;
-			resid_capacity[current * farm->graph->v + prev[current]] = 1;
-		}
-		else
-		{
-			resid_capacity[prev[current] * farm->graph->v + current] = !resid_capacity[prev[current] * farm->graph->v + current] ;
-			resid_capacity[current * farm->graph->v + prev[current]] = !resid_capacity[current * farm->graph->v + prev[current]];
-		}
+		resid_capacity[current * farm->graph->v + prev[current]] += 1;
+		resid_capacity[prev[current] * farm->graph->v + current] -= 1;
 		current = prev[current];
 	}
 	return (0);
