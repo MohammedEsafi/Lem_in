@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:40:03 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/03 11:18:52 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/03 23:52:53 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,17 @@ typedef struct	s_circuit
 	unsigned	score;
 	unsigned	total_edges;
 	unsigned	size;
+	int			rest;
 	t_list		*routes;
 }				t_circuit;
 
 typedef struct	s_room
 {
-	char	*name;
-	int		key;
-	int		coord_x;
-	int		coord_y;
+	char		*name;
+	int			ant;
+	int			key;
+	int			coord_x;
+	int			coord_y;
 }				t_room;
 
 typedef struct	s_lem_in

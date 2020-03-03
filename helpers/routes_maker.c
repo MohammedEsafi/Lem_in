@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 13:04:09 by tbareich          #+#    #+#             */
-/*   Updated: 2020/03/03 21:27:58 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/03 23:54:54 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,12 @@ int				routes_maker(t_lem_in *farm, char *seen, char *resid_capacity)
 		ft_memdel((void **)&circuit);
 	else
 	{
+		circuit->rest = (circuit->total_edges + farm->ants) % circuit->size;
 		circuit->score = ((circuit->total_edges + farm->ants) / circuit->size) -
-			(((circuit->total_edges + farm->ants) % circuit->size) == 0);
+			(circuit->rest == 0);
 		append(&(farm->circuits), circuit);
 	}
-	if (circuit->score <= farm->best_score)
+	if (circuit->score < farm->best_score)
 	{
 		farm->best_score = circuit->score;
 		farm->best_circuit = farm->circuits.cursor;
