@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 13:04:09 by tbareich          #+#    #+#             */
-/*   Updated: 2020/03/02 18:41:56 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/03 21:27:58 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,32 +50,36 @@ int				routes_maker(t_lem_in *farm, char *seen, char *resid_capacity)
 {
 	t_node		*node;
 	t_circuit	*circuit;
-	unsigned	total_edges;
 
 	node = farm->graph->adj_list[farm->end].head;
 	circuit = (t_circuit *)malloc(sizeof(t_circuit));
 	circuit->size = 0;
 	circuit->routes = NULL;
-	total_edges = 0;
+	circuit->total_edges = 0;
 	while (node != NULL)
 	{
 		if (resid_capacity[node->key * farm->graph->v + farm->end] == 0)
 		{
 			ft_lstadd(&(circuit->routes), get_the_way(farm, resid_capacity,
-					(int)node->key, &total_edges, seen));
+					(int)node->key, &(circuit->total_edges), seen));
 			circuit->size += 1;
 		}
 		node = node->next;
 	}
-	circuit->score = ((total_edges + farm->ants) / circuit->size);
 	if (circuit->size == 0)
 		ft_memdel((void **)&circuit);
 	else
+	{
+		circuit->score = ((circuit->total_edges + farm->ants) / circuit->size) -
+			(((circuit->total_edges + farm->ants) % circuit->size) == 0);
 		append(&(farm->circuits), circuit);
-	if (circuit->score < farm->best_score)
+	}
+	if (circuit->score <= farm->best_score)
 	{
 		farm->best_score = circuit->score;
 		farm->best_circuit = farm->circuits.cursor;
 	}
+	// ft_printf("circuit->size : %d\n", circuit->size);
+	// ft_printf("best circuit : %d\n", farm->best_circuit);
 	return (0);
 }

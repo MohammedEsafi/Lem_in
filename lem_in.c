@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:39:20 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/02 18:19:01 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/03 11:11:27 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static t_lem_in	*ft_init(void)
 	farm->graph = NULL;
 	farm->start = -1;
 	farm->end = -1;
+	init_array_list(&(farm->circuits));
 	init_queue(&(farm->results));
 	return (farm);
 }
