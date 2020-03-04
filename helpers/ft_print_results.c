@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 10:05:41 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/04 16:11:38 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/04 21:27:23 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,26 +71,20 @@ static void		ants_trajects_printer(t_lem_in *farm)
 	i = 0;
 	while (node != NULL)
 	{
-		// ++i;
 		path = (t_path *)(node->content);
 		room = path->list;
+		while (*((int *)(room->content)) != farm->start)
+		{
+			ft_move(farm, path, *((int *)(room->next->content)), *((int *)(room->content)));
+			room = room->next;
+		}
 		if (path->remnant == 0)
+		{
+			ft_printf("Hhh %d\n", circuit->routes);
 			ft_lstdelat(&(circuit->routes), i);
-		else
-			while (*((int *)(room->content)) != farm->start)
-			{
-				ft_move(farm, path, *((int *)(room->next->content)), *((int *)(room->content)));
-				room = room->next;
-			}
+			ft_printf("Hsslti :))\n");
+		}
 		node = ft_goto(node, circuit->routes, &i);
-		// node = node->next;
-		// if (node == NULL)
-		// {
-		// 	i = -1;
-		// 	if (node == NULL && circuit->routes != NULL)
-		// 		ft_printf("\n");
-		// 	node = circuit->routes;
-		// }
 	}
 }
 

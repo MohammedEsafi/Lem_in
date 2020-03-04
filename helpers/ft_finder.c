@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 10:09:49 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/04 14:59:46 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/04 16:21:20 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,6 @@ int			ft_finder(t_lem_in *farm)
 			break ;
 	}
 	ft_correct(farm);
-	// ft_printf("--\n");
 	// ft_print_circuit(farm);
-	// ft_printf("--\n");
-	return (farm->circuits.cursor == -1 ? 1 : 0);
+	return (farm->circuits.cursor == -1);
 }
