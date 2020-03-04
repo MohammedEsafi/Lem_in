@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 13:04:09 by tbareich          #+#    #+#             */
-/*   Updated: 2020/03/02 22:10:42 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/03/04 18:21:52 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static t_list	*get_the_way(t_lem_in *farm, char *resid_capacity,
 	path->size = 1;
 	path->list = NULL;
 	path->ants = 0;
-	ft_lstadd(&(path->list), ft_lstnew(&(farm->end), sizeof(int)));
-	seen[farm->end] = 1;
-	while (onset != farm->start)
+	ft_lstadd(&(path->list), ft_lstnew(&(farm->start), sizeof(int)));
+	seen[farm->start] = 1;
+	while (onset != farm->end)
 	{
 		ft_lstadd(&(path->list), ft_lstnew(&onset, sizeof(int)));
 		seen[onset] = 1;
@@ -32,7 +32,7 @@ static t_list	*get_the_way(t_lem_in *farm, char *resid_capacity,
 		node = farm->graph->adj_list[onset].head;
 		while (node != NULL)
 		{
-			if (resid_capacity[node->key * farm->graph->v + onset] == 0)
+			if (resid_capacity[node->key * farm->graph->v + onset] == 2)
 			{
 				onset = node->key;
 				break ;
@@ -40,8 +40,8 @@ static t_list	*get_the_way(t_lem_in *farm, char *resid_capacity,
 			node = node->next;
 		}
 	}
-	ft_lstadd(&(path->list), ft_lstnew(&(farm->start), sizeof(int)));
-	seen[farm->start] = 1;
+	ft_lstadd(&(path->list), ft_lstnew(&(farm->end), sizeof(int)));
+	seen[farm->end] = 1;
 	*total_edges += path->size;
 	return (ft_lstnew(path, sizeof(t_path)));
 }
@@ -50,29 +50,31 @@ int				routes_maker(t_lem_in *farm, char *seen, char *resid_capacity)
 {
 	t_node		*node;
 	t_circuit	*circuit;
-	unsigned	total_edges;
 
-	node = farm->graph->adj_list[farm->end].head;
-	if ((circuit = (t_circuit *)malloc(sizeof(t_circuit))) == 0)
-		return (1);
+	node = farm->graph->adj_list[farm->start].head;
+	circuit = (t_circuit *)malloc(sizeof(t_circuit));
 	circuit->size = 0;
 	circuit->routes = NULL;
-	total_edges = 0;
+	circuit->total_edges = 0;
 	while (node != NULL)
 	{
-		if (resid_capacity[node->key * farm->graph->v + farm->end] == 0)
+		if (resid_capacity[node->key * farm->graph->v + farm->start] == 2)
 		{
 			ft_lstadd(&(circuit->routes), get_the_way(farm, resid_capacity,
-					(int)node->key, &total_edges, seen));
+					(int)node->key, &(circuit->total_edges), seen));
 			circuit->size += 1;
 		}
 		node = node->next;
 	}
-	circuit->score = ((total_edges + farm->ants) / circuit->size);
 	if (circuit->size == 0)
 		ft_memdel((void **)&circuit);
 	else
+	{
+		circuit->rest = (circuit->total_edges + farm->ants) % circuit->size;
+		circuit->score = ((circuit->total_edges + farm->ants) / circuit->size);
+		//  - (circuit->rest == 0);
 		append(&(farm->circuits), circuit);
+	}
 	if (circuit->score < farm->best_score)
 	{
 		farm->best_score = circuit->score;

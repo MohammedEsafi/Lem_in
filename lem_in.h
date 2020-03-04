@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:40:03 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/02 18:18:38 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/04 14:59:06 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 typedef struct	s_path
 {
 	int			ants;
+	int			remnant;
 	unsigned	size;
 	t_list		*list;
 }				t_path;
@@ -47,27 +48,32 @@ typedef struct	s_path
 typedef struct	s_circuit
 {
 	unsigned	score;
+	unsigned	total_edges;
 	unsigned	size;
+	int			rest;
 	t_list		*routes;
 }				t_circuit;
 
 typedef struct	s_room
 {
-	char	*name;
-	int		key;
-	int		coord_x;
-	int		coord_y;
+	char		*name;
+	int			ant;
+	int			key;
+	int			coord_x;
+	int			coord_y;
 }				t_room;
 
 typedef struct	s_lem_in
 {
-	unsigned int	ants;
+	unsigned		ants;
+	unsigned		numerator;
+	unsigned		ants_arrived;
 	t_avl			*rooms;
 	t_graph			*graph;
 	int				start;
 	int				end;
 	t_queue			results;
-	int				best_score;
+	unsigned		best_score;
 	int				best_circuit;
 	t_array_list	circuits;
 }				t_lem_in;

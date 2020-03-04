@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 09:04:05 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/01 13:23:16 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/04 00:02:40 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static int		ft_fill(char *line, t_room *element, int status, int *key)
 		return (1);
 	element->name = ft_strdup(line);
 	element->key = *key;
+	element->ant = -1;
 	++(*key);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/20 13:51:29 by mesafi            #+#    #+#              #
-#    Updated: 2020/03/01 13:05:32 by tbareich         ###   ########.fr        #
+#    Updated: 2020/03/04 21:27:06 by tbareich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ WHITE		= \033[37m
 RESET		= \033[0m
 
 # Start rules
-all: build $(NAME)
+all:  $(NAME)
 
 build:
 	@if [ ! -f $(NAME) ] ; then \
@@ -62,7 +62,7 @@ build:
 	fi;
 	@make -s -C libft
 
-$(NAME): $(OBJS) $(HEADER)
+$(NAME): build $(OBJS) $(HEADER)
 	@if [ ! -f $(NAME) ] ; then \
 		echo "⇾ $(NAME) $(GREEN)done$(RESET)"; \
 	else \
