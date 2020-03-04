@@ -6,7 +6,11 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 10:05:41 by mesafi            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/03/04 21:23:08 by tbareich         ###   ########.fr       */
+=======
+/*   Updated: 2020/03/04 21:27:23 by mesafi           ###   ########.fr       */
+>>>>>>> 327fb7ec33497fa39eecc7587940245e594b7e93
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +75,6 @@ static void		ants_trajects_printer(t_lem_in *farm)
 	i = 0;
 	while (node != NULL)
 	{
-		// ++i;
 		path = (t_path *)(node->content);
 		room = path->list;
 		while (*((int *)(room->content)) != farm->start)
@@ -80,7 +83,10 @@ static void		ants_trajects_printer(t_lem_in *farm)
 			room = room->next;
 		}
 		if (path->remnant == 0)
+		{
+			ft_printf("Hhh %d\n", circuit->routes);
 			ft_lstdelat(&(circuit->routes), i);
+<<<<<<< HEAD
 		if (circuit->routes)
 			node = ft_goto(node, circuit->routes, &i);
 		else
@@ -93,6 +99,11 @@ static void		ants_trajects_printer(t_lem_in *farm)
 		// 		ft_printf("\n");
 		// 	node = circuit->routes;
 		// }
+=======
+			ft_printf("Hsslti :))\n");
+		}
+		node = ft_goto(node, circuit->routes, &i);
+>>>>>>> 327fb7ec33497fa39eecc7587940245e594b7e93
 	}
 }
 

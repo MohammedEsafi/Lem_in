@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_number_of_ants.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 09:01:23 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/29 19:56:14 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/03/04 16:20:49 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ int		get_number_of_ants(char **line, t_lem_in *farm)
 		if (respond == 0)
 			break ;
 	}
-	return (!(farm->ants));
+	return (!(farm->ants > 0));
 }
