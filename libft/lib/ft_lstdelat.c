@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 03:31:22 by tbareich          #+#    #+#             */
-/*   Updated: 2020/03/04 21:28:05 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/03/04 21:34:31 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,8 @@ t_list	*ft_lstdelat(t_list **alst, int index)
 		prv = tmp;
 		tmp = tmp->next;
 	}
-	ft_printf("ffff\n");
-	if (prv)
-		prv->next = tmp->next;
-	else
-		prv = 0;
-	ft_printf("ffff\n");
+	if (tmp == NULL)
+		return (NULL);
+	prv->next = tmp->next;
 	return (tmp);
 }
