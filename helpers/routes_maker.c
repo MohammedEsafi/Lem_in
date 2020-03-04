@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routes_maker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 13:04:09 by tbareich          #+#    #+#             */
-/*   Updated: 2020/03/02 18:41:56 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/02 22:10:42 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ int				routes_maker(t_lem_in *farm, char *seen, char *resid_capacity)
 	unsigned	total_edges;
 
 	node = farm->graph->adj_list[farm->end].head;
-	circuit = (t_circuit *)malloc(sizeof(t_circuit));
+	if ((circuit = (t_circuit *)malloc(sizeof(t_circuit))) == 0)
+		return (1);
 	circuit->size = 0;
 	circuit->routes = NULL;
 	total_edges = 0;
@@ -77,5 +78,7 @@ int				routes_maker(t_lem_in *farm, char *seen, char *resid_capacity)
 		farm->best_score = circuit->score;
 		farm->best_circuit = farm->circuits.cursor;
 	}
+	else
+		return (1);
 	return (0);
 }
