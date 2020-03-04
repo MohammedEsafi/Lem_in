@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:39:20 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/03 11:11:27 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/04 14:38:09 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ static t_lem_in	*ft_init(void)
 	farm->best_score = MAX_INT;
 	farm->best_circuit = -1;
 	farm->ants = 0;
+	farm->numerator = 0;
+	farm->ants_arrived = 0;
 	farm->rooms = NULL;
 	farm->graph = NULL;
 	farm->start = -1;
@@ -70,7 +72,7 @@ int			main(void)
 		ft_error_handler(farm);
 	if (ft_finder(farm) == 1)
 		ft_error_handler(farm);
-	// ft_print_results(farm);
+	ft_print_results(farm);
 	// ft_print_data(farm);
 	return (0);
 }

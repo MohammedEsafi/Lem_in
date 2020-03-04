@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:40:03 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/03 23:52:53 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/04 14:59:06 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 typedef struct	s_path
 {
 	int			ants;
+	int			remnant;
 	unsigned	size;
 	t_list		*list;
 }				t_path;
@@ -64,7 +65,9 @@ typedef struct	s_room
 
 typedef struct	s_lem_in
 {
-	unsigned int	ants;
+	unsigned		ants;
+	unsigned		numerator;
+	unsigned		ants_arrived;
 	t_avl			*rooms;
 	t_graph			*graph;
 	int				start;
