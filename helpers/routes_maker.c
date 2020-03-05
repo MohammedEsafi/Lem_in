@@ -3,14 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   routes_maker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 13:04:09 by tbareich          #+#    #+#             */
-/*   Updated: 2020/03/04 18:21:52 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/03/05 12:54:38 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lem_in.h"
+
+static void		ft_correct(t_lem_in *farm, t_circuit *circuit)
+{
+	t_list		*node;
+	t_path		*path;
+	int			i;
+	
+	node = circuit->routes;
+	i = -1;
+	while (node != NULL)
+	{
+		++i;
+		path = (t_path *)(node->content);
+		path->ants = circuit->score - path->size + (circuit->rest-- > 0);
+		if (path->ants <= 0)
+		{
+			circuit->total_edges -= path->size;
+			circuit->size -= 1;
+			circuit->rest = (circuit->total_edges + farm->ants) % circuit->size;
+			circuit->score = (circuit->total_edges + farm->ants) / circuit->size;
+			ft_lstdelat(&(circuit->routes), i);
+			i = -1;
+			node = circuit->routes;
+			continue ;
+		}
+		path->remnant = path->ants;
+		node = node->next;
+	}
+}
 
 static t_list	*get_the_way(t_lem_in *farm, char *resid_capacity,
 					int onset, unsigned *total_edges, char *seen)
@@ -72,7 +101,7 @@ int				routes_maker(t_lem_in *farm, char *seen, char *resid_capacity)
 	{
 		circuit->rest = (circuit->total_edges + farm->ants) % circuit->size;
 		circuit->score = ((circuit->total_edges + farm->ants) / circuit->size);
-		//  - (circuit->rest == 0);
+		ft_correct(farm, circuit);
 		append(&(farm->circuits), circuit);
 	}
 	if (circuit->score < farm->best_score)
@@ -80,7 +109,5 @@ int				routes_maker(t_lem_in *farm, char *seen, char *resid_capacity)
 		farm->best_score = circuit->score;
 		farm->best_circuit = farm->circuits.cursor;
 	}
-	else
-		return (1);
 	return (0);
 }

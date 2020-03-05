@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 10:09:49 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/04 16:21:20 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/05 13:27:11 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,20 @@
 // 	int		i;
 
 // 	i = -1;
-// 	ft_printf("Best Circuit : %d\n", farm->best_circuit);
-// 	ft_printf("Best Score : %d\n\n", farm->best_score);
+// 	ft_printf("BEST_GROUP_INDEX : %d\n", farm->best_circuit);
+// 	ft_printf("BEST_SCORE : %d\n\n", farm->best_score);
 // 	while (++i <= farm->circuits.cursor)
 // 	{
 // 		node = ((t_circuit *)(farm->circuits.list[i]))->routes;
-// 		ft_printf("REST : %d\n", ((((t_circuit *)(farm->circuits.list[i]))->total_edges + farm->ants) % ((t_circuit *)(farm->circuits.list[i]))->size));
-// 		ft_printf("Score : %d\n", ((t_circuit *)(farm->circuits.list[i]))->score);
-// 		ft_printf("Total Edges : %d\n", ((t_circuit *)(farm->circuits.list[i]))->total_edges);
-// 		ft_printf("G-Paths : %d\n", ((t_circuit *)(farm->circuits.list[i]))->size);
-// 		// ft_printf("\nsize: %u\n", farm->circuit.size);
-// 		// ft_printf("score: %u\n", farm->circuit.score);
+// 		ft_printf("score : %d\n", ((t_circuit *)(farm->circuits.list[i]))->score);
+// 		ft_printf("total edges : %d\n", ((t_circuit *)(farm->circuits.list[i]))->total_edges);
+// 		ft_printf("number of paths : %d\n", ((t_circuit *)(farm->circuits.list[i]))->size);
 // 		while (node != NULL)
 // 		{
 // 			path = (t_path *)(node->content);
 // 			list = path->list;
-// 			ft_printf("%d <<< ", ((t_circuit *)(farm->circuits.list[i]))->score - path->size + 1);
-// 			ft_printf("   path size : %d", path->size);
+// 			ft_printf(">> %d", path->ants);
+// 			// ft_printf("   path size : %d", path->size);
 // 			// while (list)
 // 			// {
 // 			// 	ft_printf("%s > ", ((t_room *)(farm->graph->
@@ -82,23 +79,6 @@
 // 	}
 // }
 
-static void		ft_correct(t_lem_in *farm)
-{
-	t_circuit	*circuit;
-	t_list		*node;
-	t_path		*path;
-	
-	circuit = (t_circuit *)(farm->circuits.list[farm->best_circuit]);
-	node = circuit->routes;
-	while (node != NULL)
-	{
-		path = (t_path *)(node->content);
-		path->ants = circuit->score - path->size + (circuit->rest-- > 0);
-		path->remnant = path->ants;
-		node = node->next;
-	}
-}
-
 static int	is_validated(t_lem_in *farm)
 {
 	if (farm->start == -1 || farm->end == -1)
@@ -129,7 +109,6 @@ int			ft_finder(t_lem_in *farm)
 		if (routes_maker(farm, seen, resid_capacity) == 1)
 			break ;
 	}
-	ft_correct(farm);
 	// ft_print_circuit(farm);
 	return (farm->circuits.cursor == -1);
 }
