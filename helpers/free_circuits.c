@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   free_circuits.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 15:51:19 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/05 16:01:59 by mesafi           ###   ########.fr       */
+/*   Created: 2020/03/05 14:22:22 by mesafi            #+#    #+#             */
+/*   Updated: 2020/03/05 16:04:47 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "../lem_in.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
+static void	del_child(t_list *child)
 {
-	t_list	*node;
-	t_list	*temporal;
+	ft_memdel((void **)&(child->content));
+	ft_memdel((void **)&child);
+}
 
-	exit(1);
-	ft_printf("11\n");
-	node = lst;
-	while (node != NULL)
-	{
-		temporal = node->next;
-		(*f)(node);
-		node = temporal;
-	}
+static void	del_path(t_list *node)
+{
+	ft_lstiter(((t_path *)(node->content))->list, del_child);
+	ft_memdel((void **)&(node->content));
+	ft_memdel((void **)&node);
+}
+
+void		free_circuits(t_circuit *circuit)
+{
+	ft_lstiter(circuit->routes, del_path);
+	ft_memdel((void **)&circuit);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_results.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 10:05:41 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/04 21:40:34 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/03/05 13:58:11 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,23 @@ static int		ft_out(t_lem_in *farm, t_path *path)
 
 static void		ft_move(t_lem_in *farm, t_path *path, int from, int to)
 {
-	int		no_of_ant;
+	int		id_number;
 	char	*room;
 
 	if (from == farm->start)
-		no_of_ant = ft_out(farm, path);
+		id_number = ft_out(farm, path);
 	else
 	{
-		no_of_ant = ((t_room *)(farm->graph->adj_list[from].content))->ant;
+		id_number = ((t_room *)(farm->graph->adj_list[from].content))->ant;
 		((t_room *)(farm->graph->adj_list[from].content))->ant = -1;
 	}
-	if (no_of_ant != -1)
+	if (id_number != -1)
 	{
 		if (to == farm->end)
 			path->remnant -= 1;
 		room = ((t_room *)(farm->graph->adj_list[to].content))->name;
-		((t_room *)(farm->graph->adj_list[to].content))->ant = no_of_ant;
-		ft_printf("L%d-%s ", no_of_ant, room);
+		((t_room *)(farm->graph->adj_list[to].content))->ant = id_number;
+		ft_printf("L%d-%s ", id_number, room);
 	}
 }
 
@@ -60,14 +60,12 @@ static t_list	*ft_goto(t_list *node, t_list *head, int *index)
 
 static void		ants_trajects_printer(t_lem_in *farm)
 {
-	t_circuit	*circuit;
 	t_list		*node;
 	t_list		*room;
 	t_path		*path;
 	int			i;
 
-	circuit = (t_circuit *)(farm->circuits.list[farm->best_circuit]);
-	node = circuit->routes;
+	node = farm->circuit->routes;
 	i = 0;
 	while (node != NULL)
 	{
@@ -80,10 +78,10 @@ static void		ants_trajects_printer(t_lem_in *farm)
 		}
 		if (path->remnant == 0)
 		{
-			ft_lstdelat(&(circuit->routes), i);
+			ft_lstdelat(&(farm->circuit->routes), i);
 			--i;
 		}
-		node = ft_goto(node, circuit->routes, &i);
+		node = ft_goto(node, farm->circuit->routes, &i);
 	}
 }
 

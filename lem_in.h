@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:40:03 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/04 14:59:06 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/05 14:22:52 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,13 @@ typedef struct	s_lem_in
 {
 	unsigned		ants;
 	unsigned		numerator;
-	unsigned		ants_arrived;
 	t_avl			*rooms;
 	t_graph			*graph;
 	int				start;
 	int				end;
 	t_queue			results;
-	unsigned		best_score;
-	int				best_circuit;
-	t_array_list	circuits;
+	unsigned		score;
+	t_circuit		*circuit;
 }				t_lem_in;
 
 /*
@@ -92,5 +90,6 @@ int				ft_finder(t_lem_in *farm);
 int				edmonds_karp(t_lem_in *farm, char *seen,
 					char *resid_capacity);
 int				routes_maker(t_lem_in *farm, char *seen, char *resid_capacity);
+void			free_circuits(t_circuit *circuit);
 
 #endif

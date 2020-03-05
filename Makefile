@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+         #
+#    By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/20 13:51:29 by mesafi            #+#    #+#              #
-#    Updated: 2020/03/04 21:27:06 by tbareich         ###   ########.fr        #
+#    Updated: 2020/03/05 14:23:11 by mesafi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ OBJS		= lem_in.o \
 				avl/avl_print.o \
 				helpers/ft_finder.o \
 				helpers/edmonds_karp.o \
-				helpers/routes_maker.o
+				helpers/routes_maker.o \
+				helpers/free_circuits.o
 
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
