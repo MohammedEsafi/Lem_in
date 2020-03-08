@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_circuits.c                                    :+:      :+:    :+:   */
+/*   free_circuit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 14:22:22 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/05 16:04:47 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/05 16:13:09 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ static void	del_path(t_list *node)
 	ft_memdel((void **)&node);
 }
 
-void		free_circuits(t_circuit *circuit)
+void		free_circuit(t_circuit *circuit)
 {
+	if (circuit == NULL)
+		return ;
 	ft_lstiter(circuit->routes, del_path);
 	ft_memdel((void **)&circuit);
 }

@@ -6,7 +6,7 @@
 #    By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/20 13:51:29 by mesafi            #+#    #+#              #
-#    Updated: 2020/03/05 14:23:11 by mesafi           ###   ########.fr        #
+#    Updated: 2020/03/05 16:07:05 by mesafi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ OBJS		= lem_in.o \
 				helpers/ft_finder.o \
 				helpers/edmonds_karp.o \
 				helpers/routes_maker.o \
-				helpers/free_circuits.o
+				helpers/free_circuit.o
 
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror

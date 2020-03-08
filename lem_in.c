@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:39:20 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/05 15:48:41 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/07 16:13:27 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static t_lem_in	*ft_init(void)
 	farm->score = MAX_INT;
 	farm->ants = 0;
 	farm->numerator = 0;
+	farm->seen = NULL;
+	farm->capacity = NULL;
 	farm->circuit = NULL;
 	farm->rooms = NULL;
 	farm->graph = NULL;
@@ -32,7 +34,11 @@ static t_lem_in	*ft_init(void)
 static void		ft_free(t_lem_in *farm)
 {
 	free_queue(&(farm->results));
-	free_circuits(farm->circuit);
+	free_circuit(farm->circuit);
+	if (farm->seen != NULL)
+		ft_memdel((void **)&(farm->seen));
+	if (farm->capacity != NULL)
+		ft_memdel((void **)&(farm->capacity));
 	ft_memdel((void **)&farm);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 13:04:09 by tbareich          #+#    #+#             */
-/*   Updated: 2020/03/05 16:02:29 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/07 16:11:39 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,13 @@ static void			ft_correct(t_lem_in *farm, t_circuit *circuit)
 	}
 }
 
+static void			ft_switcher(t_lem_in *farm, t_circuit *circuit)
+{
+	farm->score = circuit->score;
+	free_circuit(farm->circuit);
+	farm->circuit = circuit;
+}
+
 static t_circuit	*init_circuit(void)
 {
 	t_circuit	*circuit;
@@ -65,8 +72,8 @@ static t_path		*init_path(void)
 	return (path);
 }
 
-static t_list		*get_the_way(t_lem_in *farm, char *resid_capacity,
-					int onset, unsigned *total_edges, char *seen)
+static t_list		*get_the_way(t_lem_in *farm, int onset,
+						unsigned *total_edges)
 {
 	t_path		*path;
 	t_node		*node;
@@ -74,16 +81,16 @@ static t_list		*get_the_way(t_lem_in *farm, char *resid_capacity,
 	if (!(path = init_path()))
 		return (NULL);
 	ft_lstadd(&(path->list), ft_lstnew(&(farm->start), sizeof(int)));
-	seen[farm->start] = 1;
+	farm->seen[farm->start] = 1;
 	while (onset != farm->end)
 	{
 		ft_lstadd(&(path->list), ft_lstnew(&onset, sizeof(int)));
-		seen[onset] = 1;
+		farm->seen[onset] = 1;
 		path->size += 1;
 		node = farm->graph->adj_list[onset].head;
 		while (node != NULL)
 		{
-			if (resid_capacity[node->key * farm->graph->v + onset] == 2)
+			if (farm->capacity[node->key * farm->graph->v + onset] == 2)
 			{
 				onset = node->key;
 				break ;
@@ -92,24 +99,25 @@ static t_list		*get_the_way(t_lem_in *farm, char *resid_capacity,
 		}
 	}
 	ft_lstadd(&(path->list), ft_lstnew(&(farm->end), sizeof(int)));
-	seen[farm->end] = 1;
+	farm->seen[farm->end] = 1;
 	*total_edges += path->size;
 	return (ft_lstnew(path, sizeof(t_path)));
 }
 
-int					routes_maker(t_lem_in *farm, char *seen, char *resid_capacity)
+int					routes_maker(t_lem_in *farm)
 {
 	t_node		*node;
 	t_circuit	*circuit;
 
 	node = farm->graph->adj_list[farm->start].head;
-	circuit = init_circuit();
+	if (!(circuit = init_circuit()))
+			return (1);
 	while (node != NULL)
 	{
-		if (resid_capacity[node->key * farm->graph->v + farm->start] == 2)
+		if (farm->capacity[node->key * farm->graph->v + farm->start] == 2)
 		{
-			ft_lstadd(&(circuit->routes), get_the_way(farm, resid_capacity,
-					(int)node->key, &(circuit->total_edges), seen));
+			ft_lstadd(&(circuit->routes), get_the_way(farm, (int)node->key,
+				&(circuit->total_edges)));
 			circuit->size += 1;
 		}
 		node = node->next;
@@ -118,12 +126,8 @@ int					routes_maker(t_lem_in *farm, char *seen, char *resid_capacity)
 	circuit->score = ((circuit->total_edges + farm->ants) / circuit->size);
 	ft_correct(farm, circuit);
 	if (circuit->score < farm->score)
-	{
-		farm->score = circuit->score;
-		free_circuits(farm->circuit);
-		farm->circuit = circuit;
-	}
+		ft_switcher(farm, circuit);
 	else
-		free_circuits(circuit);
+		free_circuit(circuit);
 	return (0);
 }
