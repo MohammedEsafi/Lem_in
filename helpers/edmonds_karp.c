@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 16:01:50 by tbareich          #+#    #+#             */
-/*   Updated: 2020/03/11 15:38:37 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/03/11 16:10:23 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ int		edmonds_karp(t_lem_in *farm, char *seen, char *resid_capacity)
 			if (visited[node->key] == 0 &&
 					resid_capacity[(*current) * farm->graph->v + node->key])
 			{
-				if (seen[node->key] && node_seen(farm, *current, node->key, resid_capacity) == 0)
+				if (seen[node->key] &&
+					node_seen(farm, *current, node->key, resid_capacity) == 0)
 				{
 					visited[*current] = 1;
 					node = node->next;

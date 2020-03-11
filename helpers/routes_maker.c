@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 13:04:09 by tbareich          #+#    #+#             */
-/*   Updated: 2020/03/11 15:40:38 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/03/11 22:38:29 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static void			ft_correct(t_lem_in *farm, t_circuit *circuit)
 	{
 		++i;
 		path = (t_path *)(node->content);
-		path->ants = circuit->score - path->size;
+		ft_printf("%d\n", path->size);
+		path->ants = circuit->score - path->size + (circuit->rest == 0);
 		if (path->ants <= 0)
 		{
 			circuit->total_edges -= path->size;
@@ -188,13 +189,10 @@ int					routes_maker(t_lem_in *farm)
 	circuit->rest = (circuit->total_edges + farm->ants) % circuit->size;
 	circuit->score = ((circuit->total_edges + farm->ants) / circuit->size) -
 						(circuit->rest == 0);
-	// ft_printf("{blue}circuit size : %d \n", circuit->size);
-	// ft_printf("circuit score : %d \n\n{eoc}", circuit->score);
+
 	// print_circuit(farm, *circuit);
 	ft_correct(farm, circuit);
-	// ft_printf("{red}circuit size : %d \n", circuit->size);
-	// ft_printf("circuit score : %d \n\n{eoc}", circuit->score);
-	if (circuit->score < farm->score)
+	if (circuit->score <= farm->score)
 		ft_switcher(farm, circuit);
 	else
 		free_circuit(circuit);
