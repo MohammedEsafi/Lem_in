@@ -1,0 +1,10 @@
+{
+	"files.associations": {
+		"iterator": "c",
+		"__locale": "c",
+		"__bit_reference": "c",
+		"__split_buffer": "c",
+		"string": "c",
+		"vector": "c"
+	}
+}

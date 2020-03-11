@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_results.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 10:05:41 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/05 13:58:11 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/10 15:16:39 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ static void		ants_trajects_printer(t_lem_in *farm)
 		room = path->list;
 		while (*((int *)(room->content)) != farm->start)
 		{
-			ft_move(farm, path, *((int *)(room->next->content)), *((int *)(room->content)));
+			ft_move(farm, path, *((int *)(room->next->content)),
+								*((int *)(room->content)));
 			room = room->next;
 		}
 		if (path->remnant == 0)

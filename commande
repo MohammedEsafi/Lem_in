@@ -1,0 +1,1 @@
+./generator --big-superposition > m && cat m | grep -m 1 ^#Here && ./lem-in < m | grep ^L | wc -l && ./lem-ins < m |grep ^L | wc -l

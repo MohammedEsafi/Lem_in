@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 16:01:50 by tbareich          #+#    #+#             */
-/*   Updated: 2020/03/02 14:29:16 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/03/11 14:15:13 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		edmonds_karp(t_lem_in *farm, char *seen, char *resid_capacity)
 	int			*prev;
 	char		*visited;
 	t_queue		q;
-	int			current;
+	int			*current;
 	t_node		*node;
 
 	init_queue(&q);
@@ -33,34 +33,33 @@ int		edmonds_karp(t_lem_in *farm, char *seen, char *resid_capacity)
 	visited[farm->start] = 1;
 	while (q.size > 0)
 	{
-		current = *((int *)dequeue(&q));
-		node = (farm->graph->adj_list)[current].head;
+		current = (int *)dequeue(&q);
+		node = (farm->graph->adj_list)[*current].head;
 		while (node)
 		{
 			if (visited[node->key] == 0 &&
-					(resid_capacity + current * farm->graph->v)[node->key])
+					resid_capacity[(*current) * farm->graph->v + node->key])
 			{
-				if (seen[current] && current != farm->start)
+				if ((*current) != farm->start && seen[(*current)])
 				{
-					if (resid_capacity[prev[current] * farm->graph->v + current]
-					&& resid_capacity[current * farm->graph->v + prev[current]]
-					&& resid_capacity[current * farm->graph->v + node->key]
-					&& resid_capacity[node->key * farm->graph->v + current])
-						visited[current] = 0;
+					if (
+				resid_capacity[prev[*current] * farm->graph->v + *current] == 1
+				&& resid_capacity[*current * farm->graph->v + node->key] == 1)
+						visited[*current] = 1;
 					else
 					{
 						enqueue(&q, (int*)&node->key, sizeof(int));
 						visited[node->key] = 1;
-						visited[current] = 1;
-						prev[node->key] = current;
+						visited[*current] = 1;
+						prev[node->key] = (*current);
 					}
 				}
 				else
 				{
 					enqueue(&q, (int*)&node->key, sizeof(int));
 					visited[node->key] = 1;
-					visited[current] = 1;
-					prev[node->key] = current;
+					visited[*current] = 1;
+					prev[node->key] = (*current);
 				}
 				if ((int)node->key == farm->end)
 					break ;
@@ -68,20 +67,30 @@ int		edmonds_karp(t_lem_in *farm, char *seen, char *resid_capacity)
 			node = node->next;
 		}
 		if (node && (int)node->key == farm->end)
+		{
+			prev[node->key] = *current;
+			*current = node->key;
 			break ;
+		}
+		ft_memdel((void**)&current);
 	}
-	if (node && (int)node->key == farm->end)
+	if (!node || (int)node->key != farm->end)
 	{
-		prev[node->key] = current;
-		current = node->key;
-	}
-	else
+		ft_memdel((void **)&current);
+		ft_memdel((void **)&prev);
+		ft_memdel((void **)&visited);
+		free_queue(&q);
 		return (1);
-	while (current != farm->start)
-	{
-		resid_capacity[current * farm->graph->v + prev[current]] += 1;
-		resid_capacity[prev[current] * farm->graph->v + current] -= 1;
-		current = prev[current];
 	}
+	while ((*current) != farm->start)
+	{
+		resid_capacity[(*current) * farm->graph->v + prev[*current]] += 1;
+		resid_capacity[prev[*current] * farm->graph->v + (*current)] -= 1;
+		(*current) = prev[*current];
+	}
+	ft_memdel((void **)&current);
+	ft_memdel((void **)&prev);
+	ft_memdel((void **)&visited);
+	free_queue(&q);
 	return (0);
 }
