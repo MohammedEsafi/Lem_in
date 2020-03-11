@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 13:04:09 by tbareich          #+#    #+#             */
-/*   Updated: 2020/03/11 14:19:27 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/03/11 15:40:38 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,10 +190,10 @@ int					routes_maker(t_lem_in *farm)
 						(circuit->rest == 0);
 	// ft_printf("{blue}circuit size : %d \n", circuit->size);
 	// ft_printf("circuit score : %d \n\n{eoc}", circuit->score);
-	// ft_printf("{red}circuit size : %d \n", circuit->size);
-	// ft_printf("circuit score : %d \n\n{eoc}", circuit->score);
 	// print_circuit(farm, *circuit);
 	ft_correct(farm, circuit);
+	// ft_printf("{red}circuit size : %d \n", circuit->size);
+	// ft_printf("circuit score : %d \n\n{eoc}", circuit->score);
 	if (circuit->score < farm->score)
 		ft_switcher(farm, circuit);
 	else

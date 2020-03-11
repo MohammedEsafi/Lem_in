@@ -6,11 +6,32 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 16:01:50 by tbareich          #+#    #+#             */
-/*   Updated: 2020/03/11 14:15:13 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/03/11 15:38:37 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lem_in.h"
+
+int		node_seen(t_lem_in *farm, int current, int next,
+					char *resid_capacity)
+{
+	t_node		*node;
+
+	node = (farm->graph->adj_list)[next].head;
+	while (node)
+	{
+		if ((int)node->key == farm->start)
+		{
+			node = node->next;
+			continue ;
+		}
+		if ((resid_capacity[current * farm->graph->v + next] == 2 ||
+			resid_capacity[next * farm->graph->v + node->key] == 2))
+			return (1);
+		node = node->next;
+	}
+	return (0);
+}
 
 int		edmonds_karp(t_lem_in *farm, char *seen, char *resid_capacity)
 {
@@ -40,13 +61,17 @@ int		edmonds_karp(t_lem_in *farm, char *seen, char *resid_capacity)
 			if (visited[node->key] == 0 &&
 					resid_capacity[(*current) * farm->graph->v + node->key])
 			{
+				if (seen[node->key] && node_seen(farm, *current, node->key, resid_capacity) == 0)
+				{
+					visited[*current] = 1;
+					node = node->next;
+					continue ;
+				}
 				if ((*current) != farm->start && seen[(*current)])
 				{
 					if (
-				resid_capacity[prev[*current] * farm->graph->v + *current] == 1
-				&& resid_capacity[*current * farm->graph->v + node->key] == 1)
-						visited[*current] = 1;
-					else
+				resid_capacity[prev[*current] * farm->graph->v + *current] != 1
+				|| resid_capacity[*current * farm->graph->v + node->key] != 1)
 					{
 						enqueue(&q, (int*)&node->key, sizeof(int));
 						visited[node->key] = 1;
