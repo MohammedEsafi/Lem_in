@@ -6,13 +6,13 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 13:04:09 by tbareich          #+#    #+#             */
-/*   Updated: 2020/03/11 22:38:29 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/03/12 19:08:49 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lem_in.h"
 
-static void			ft_correct(t_lem_in *farm, t_circuit *circuit)
+static void			ft_circuit_score(t_lem_in *farm, t_circuit *circuit)
 {
 	t_list		*node;
 	t_path		*path;
@@ -20,19 +20,20 @@ static void			ft_correct(t_lem_in *farm, t_circuit *circuit)
 
 	node = circuit->routes;
 	i = -1;
+	circuit->rest = (circuit->total_edges + farm->ants) % circuit->size;
+	circuit->score = ((circuit->total_edges + farm->ants) / circuit->size);
 	while (node != NULL)
 	{
 		++i;
 		path = (t_path *)(node->content);
-		ft_printf("%d\n", path->size);
-		path->ants = circuit->score - path->size + (circuit->rest == 0);
+		path->ants = circuit->score - path->size;
 		if (path->ants <= 0)
 		{
 			circuit->total_edges -= path->size;
 			circuit->size -= 1;
 			circuit->rest = (circuit->total_edges + farm->ants) % circuit->size;
 			circuit->score = (circuit->total_edges + farm->ants) /
-								circuit->size - (circuit->rest == 0);
+								circuit->size;
 			ft_lstdelat(&(circuit->routes), i);
 			i = -1;
 			node = circuit->routes;
@@ -42,6 +43,9 @@ static void			ft_correct(t_lem_in *farm, t_circuit *circuit)
 		path->remnant = path->ants;
 		node = node->next;
 	}
+	circuit->rest = (circuit->total_edges + farm->ants) % circuit->size;
+	circuit->score = (circuit->total_edges + farm->ants) /
+						circuit->size - (circuit->rest == 0);
 }
 
 static void			ft_switcher(t_lem_in *farm, t_circuit *circuit)
@@ -148,35 +152,6 @@ static int		get_the_way(t_lem_in *farm,
 	return (0);
 }
 
-void				print_circuit(t_lem_in *farm, t_circuit circuit)
-{
-	t_list		*node;
-	t_list		*path;
-	int			room;
-
-	ft_printf("{red}circuit size : %d \n", circuit.size);
-	ft_printf("circuit score : %d \n\n{eoc}", circuit.score);
-	node = circuit.routes;
-	while (node)
-	{
-		path = ((t_path *)(node->content))->list;
-		ft_printf("{yellow}path size : %d {eoc}\n", ((t_path *)
-					(node->content))->size);
-		while (path)
-		{
-			room = *((int *)path->content);
-			ft_printf("%s", ((t_room *)
-						(farm->graph->adj_list[room].content))->name);
-			if (path->next)
-				ft_printf("{green} => {eoc}");
-			path = path->next;
-		}
-		ft_printf("\n");
-		node = node->next;
-	}
-	ft_printf("\n\n\n");
-}
-
 int					routes_maker(t_lem_in *farm)
 {
 	t_node		*node;
@@ -186,12 +161,7 @@ int					routes_maker(t_lem_in *farm)
 	if (!(circuit = init_circuit()))
 		return (1);
 	get_the_way(farm, &(circuit->total_edges), circuit);
-	circuit->rest = (circuit->total_edges + farm->ants) % circuit->size;
-	circuit->score = ((circuit->total_edges + farm->ants) / circuit->size) -
-						(circuit->rest == 0);
-
-	// print_circuit(farm, *circuit);
-	ft_correct(farm, circuit);
+	ft_circuit_score(farm, circuit);
 	if (circuit->score <= farm->score)
 		ft_switcher(farm, circuit);
 	else

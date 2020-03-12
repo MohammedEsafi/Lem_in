@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_the_rooms.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 09:04:05 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/04 00:02:40 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/12 19:26:13 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int				get_the_rooms(char **line, t_lem_in *farm, int *key)
 	{
 		enqueue(&(farm->results), *line, ft_strlen(*line) + 1);
 		status = respond;
-		respond = check_if_comment(*line);
+		respond = check_if_comment(farm, *line);
 		if (respond > 0 && respond < 4)
 		{
 			ft_memdel((void **)line);

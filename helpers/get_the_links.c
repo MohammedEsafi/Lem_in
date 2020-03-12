@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_the_links.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:02:28 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/01 13:23:16 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/12 19:26:34 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int			get_the_links(char **line, t_lem_in *farm, int key)
 	while (*line != NULL && respond > 0)
 	{
 		enqueue(&(farm->results), *line, ft_strlen(*line) + 1);
-		respond = !(check_if_comment(*line));
+		respond = !(check_if_comment(farm, *line));
 		if (respond != 0)
 			respond = ft_get_edge(farm, *line);
 		ft_memdel((void **)line);

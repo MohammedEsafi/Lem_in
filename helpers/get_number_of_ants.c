@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_number_of_ants.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 09:01:23 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/04 16:20:49 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/12 19:25:57 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		get_number_of_ants(char **line, t_lem_in *farm)
 	while (get_next_line(0, line))
 	{
 		enqueue(&(farm->results), *line, ft_strlen(*line) + 1);
-		respond = check_if_comment(*line);
+		respond = check_if_comment(farm, *line);
 		if (respond == 0 && !ft_is_number(*line))
 			respond = -1;
 		else if (respond == 0)
