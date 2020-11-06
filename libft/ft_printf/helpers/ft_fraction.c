@@ -21,7 +21,7 @@ char	*ft_fraction(union u_double	f_data)
 	t_fast_power	last_pow;
 
 	exp = f_data.t_long_double.exponent - 16383;
-	pow = exp >= 0 ? 1 : ABS(exp);
+	pow = exp >= 0 ? 1 : abs(exp);
 	last_pow.last = 0;
 	shift = exp < 0 ? 64 : 63 - exp;
 	if (!(fraction = ft_strnew(exp < 0 ? -exp - 1 : 0)))

@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 23:08:45 by mesafi            #+#    #+#             */
-/*   Updated: 2019/10/27 14:32:21 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/11/06 17:16:42 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void				ft_specifier_int(va_list argp, t_printf_arg *arg)
 	unsigned int	len;
 
 	nbr = switcher(argp, arg);
-	error_handler(0, str = ft_snumtoa(ABS(nbr)));
+	error_handler(0, str = ft_snumtoa(ll_abs(nbr)));
 	(arg->flags & APOSTROPHE) && (str = separated_number(&str));
 	len = ft_strlen(str);
 	(arg->flags & PLUS || arg->flags & SPACE || nbr < 0) && --arg->width;

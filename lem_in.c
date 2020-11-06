@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:39:20 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/28 08:33:27 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/11/06 19:07:29 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void		print(t_avl *elem)
 
 static void		ft_print_data(t_lem_in *farm)
 {
-	ft_printf("{red}%-20s", "Name");
+	ft_printf("\n{red}%-20s", "Name");
 	ft_printf("%-20s{eoc}\n", "Key");
 	avl_print_elem(farm->rooms, print);
 	ft_printf("\n");
@@ -52,7 +52,7 @@ static void		ft_error_handler(t_lem_in *farm)
 	exit(1);
 }
 
-int			main(void)
+int				main(void)
 {
 	t_lem_in	*farm;
 
@@ -61,7 +61,7 @@ int			main(void)
 		ft_error_handler(farm);
 	if (ft_finder(farm) == 1)
 		ft_error_handler(farm);
-	// ft_print_results(&(farm->results));
+	ft_print_results(&(farm->results));
 	ft_print_data(farm);
 	return (0);
 }

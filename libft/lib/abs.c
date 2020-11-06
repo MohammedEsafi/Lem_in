@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_finder.c                                        :+:      :+:    :+:   */
+/*   abs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/27 10:09:49 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/27 11:13:15 by mesafi           ###   ########.fr       */
+/*   Created: 2020/11/06 17:08:41 by tbareich          #+#    #+#             */
+/*   Updated: 2020/11/06 17:13:26 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lem_in.h"
-
-static int	is_validated(t_lem_in *farm)
+int					abs(int x)
 {
-	if (farm->start == -1 || farm->end == -1)
-		return (1);
-	return (0);
+	return (x < 0 ? -x : x);
 }
 
-int			ft_finder(t_lem_in *farm)
+long long			ll_abs(long long x)
 {
-	if (is_validated(farm) == 1)
-		return (1);
-	return (0);
+	return (x < 0 ? -x : x);
+}
+
+unsigned long long	ull_abs(unsigned long long x)
+{
+	return (x < 0 ? -x : x);
+}
+
+unsigned			u_abs(unsigned x)
+{
+	return (x < 0 ? -x : x);
 }

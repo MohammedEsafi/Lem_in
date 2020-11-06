@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+         #
+#    By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/29 23:34:49 by mesafi            #+#    #+#              #
-#    Updated: 2020/02/26 11:13:41 by mesafi           ###   ########.fr        #
+#    Updated: 2020/11/06 17:14:34 by tbareich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,6 +98,7 @@ OBJS = lib/bst_delete.o \
 			lib/get_next_line.o \
 			lib/ft_strip.o \
 			lib/ft_is_number.o \
+			lib/abs.o \
 			queue/dequeue.o \
 			queue/enqueue.o \
 			queue/init_queue.o \
