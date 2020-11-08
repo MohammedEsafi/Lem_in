@@ -12,7 +12,24 @@
 
 #include "../lem_in.h"
 
-void			print_path(t_lem_in *farm, t_list *path)
+static void		print_infos(t_lem_in *farm)
+{
+	if (farm->required_iter == -1)
+		ft_printf("\n{red}required iterations : NOT DETECTED\n");
+	else
+		ft_printf("\n{red}required iterations : %d\n", farm->required_iter);
+	ft_printf("\n{blue}total ants  : %d\n", farm->ants);
+	ft_printf("total rooms : %d\n", farm->graph->v);
+	ft_printf("{start room : %s\n",
+			((t_room *)((farm->graph->adj_list[farm->start]).content))->name);
+	ft_printf("{end room   : %s\n{eoc}",
+			((t_room *)((farm->graph->adj_list[farm->end]).content))->name);
+	ft_printf("\n{yellow}circuit size     : %d\n", farm->circuit->size);
+	ft_printf("total edges      : %d\n", farm->circuit->total_edges);
+	ft_printf("total iterations : %d \n\n{eoc}", farm->circuit->score - 1);
+}
+
+static void		print_path(t_lem_in *farm, t_list *path)
 {
 	int			room;
 
@@ -30,19 +47,7 @@ void			print_circuit(t_lem_in *farm)
 	t_list		*node;
 	t_list		*path;
 
-	if (farm->required_iter == -1)
-		ft_printf("\n{red}required iterations : NOT DETECTED\n");
-	else
-		ft_printf("\n{red}required iterations : %d\n", farm->required_iter);
-	ft_printf("\n{blue}total ants  : %d\n", farm->ants);
-	ft_printf("total rooms : %d\n", farm->graph->v);
-	ft_printf("{start room : %s\n",
-			((t_room *)((farm->graph->adj_list[farm->start]).content))->name);
-	ft_printf("{end room   : %s\n{eoc}",
-			((t_room *)((farm->graph->adj_list[farm->end]).content))->name);
-	ft_printf("\n{yellow}circuit size     : %d\n", farm->circuit->size);
-	ft_printf("total edges      : %d\n", farm->circuit->total_edges);
-	ft_printf("total iterations : %d \n\n{eoc}", farm->circuit->score - 1);
+	print_infos(farm);
 	if (!(farm->options & 2))
 	{
 		node = farm->circuit->routes;
