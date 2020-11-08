@@ -107,7 +107,7 @@ static int			get_the_route(t_lem_in *farm, unsigned *total_edges,
 	return (0);
 }
 
-static int		get_the_way(t_lem_in *farm,
+static int			get_the_way(t_lem_in *farm,
 						unsigned *total_edges, t_circuit *circuit)
 {
 	t_node		*node;

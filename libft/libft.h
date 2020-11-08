@@ -186,6 +186,7 @@ int				arrlst_size(t_arrlst arrlst);
 
 int				max(int a, int b);
 int				min(int a, int b);
+intmax_t		ft_imaxabs(intmax_t number);
 
 /*
  ** extra Functions

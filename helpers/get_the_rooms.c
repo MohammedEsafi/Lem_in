@@ -25,11 +25,10 @@ static int		rooms_cmp(void *elem1, void *elem2)
 	return (ft_strcmp(((t_room *)elem1)->name, ((t_room *)elem2)->name));
 }
 
-static int		ft_fill(char *line, t_room *element, int status, int *key)
+static int		ft_fill(char *line, t_room *element, int *key)
 {
 	char	*indicator;
 
-	(void)status;
 	indicator = ft_strrchr(line, ' ');
 	if (indicator == NULL || !ft_is_number(indicator + 1))
 		return (-1);
@@ -71,7 +70,7 @@ int				get_the_rooms(char **line, t_lem_in *farm, int *key)
 			ft_memdel((void **)*line);
 			return (1);
 		}
-		if ((respond = ft_fill(*line, element, status, key)) == -1)
+		if ((respond = ft_fill(*line, element, key)) == -1)
 			ft_memdel((void **)&element);
 		else if (respond == 0)
 		{
