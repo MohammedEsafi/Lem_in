@@ -46,7 +46,7 @@ int			ft_parse_width(const char *format, va_list argp, t_printf_arg *arg)
 			ret += count_digits(format + ret);
 			break ;
 		}
-		arg->width = ABS(width);
+		arg->width = abs(width);
 	}
 	return (ret);
 }

@@ -36,7 +36,7 @@ void				ft_specifier_int(va_list argp, t_printf_arg *arg)
 	unsigned int	len;
 
 	nbr = switcher(argp, arg);
-	error_handler(0, str = ft_snumtoa(ABS(nbr)));
+	error_handler(0, str = ft_snumtoa(ll_abs(nbr)));
 	(arg->flags & APOSTROPHE) && (str = separated_number(&str));
 	len = ft_strlen(str);
 	(arg->flags & PLUS || arg->flags & SPACE || nbr < 0) && --arg->width;

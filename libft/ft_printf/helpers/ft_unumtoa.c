@@ -32,7 +32,7 @@ char				*ft_unumtoa(unsigned long long n)
 	char			*str;
 	unsigned int	length;
 
-	n = ABS(n);
+	n = ull_abs(n);
 	length = nb_len(n);
 	if ((str = ft_strnew(length)) == NULL)
 		return (NULL);
