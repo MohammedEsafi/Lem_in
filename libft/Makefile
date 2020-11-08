@@ -111,7 +111,7 @@ OBJS = lib/bst_delete.o \
 			array_list/init_array_list.o \
 			math/max.o \
 			math/min.o \
-			math/ft_imaxabs.o
+			math/abs.o
 
 CC = gcc
 
