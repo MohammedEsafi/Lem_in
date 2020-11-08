@@ -15,6 +15,7 @@
 int		get_number_of_ants(char **line, t_lem_in *farm)
 {
 	int		respond;
+	int		result;
 
 	while (get_next_line(0, line))
 	{
@@ -23,12 +24,14 @@ int		get_number_of_ants(char **line, t_lem_in *farm)
 		if (respond == 0 && !ft_is_number(*line))
 			respond = -1;
 		else if (respond == 0)
-			farm->ants = ft_atoi(*line);
+			result = ft_atoi(*line);
 		ft_memdel((void **)line);
 		if (respond == -1)
 			return (1);
 		if (respond == 0)
 			break ;
 	}
-	return (!(farm->ants > 0));
+	if (result > 0)
+		farm->ants = result;
+	return (!(result > 0));
 }
