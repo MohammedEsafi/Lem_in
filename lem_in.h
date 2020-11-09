@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:40:03 by mesafi            #+#    #+#             */
-/*   Updated: 2020/11/07 18:53:42 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/11/08 10:52:37 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ int				routes_maker(t_lem_in *farm);
 void			free_circuit(t_circuit *circuit);
 void			ft_error_handler(t_lem_in *farm);
 void			print_circuit(t_lem_in *farm);
-void			print_path(t_lem_in *farm, t_list *path);
 void			usage(t_lem_in *farm, int ac, char **av);
 
 #endif
