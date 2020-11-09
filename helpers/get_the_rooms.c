@@ -48,6 +48,20 @@ static int		ft_fill(char *line, t_room *element, int *key)
 	return (0);
 }
 
+int				line_omit(char **line)
+{
+	ft_memdel((void **)*line);
+	return (1);
+}
+
+void			data_structuring(t_lem_in *farm, int key, int status,
+					t_room *element)
+{
+	fill_start_end(farm, status, key - 1);
+	farm->rooms = avl_insert_elem(farm->rooms, element, sizeof(t_room),
+		rooms_cmp);
+}
+
 int				get_the_rooms(char **line, t_lem_in *farm, int *key)
 {
 	t_room		*element;
@@ -59,25 +73,14 @@ int				get_the_rooms(char **line, t_lem_in *farm, int *key)
 	{
 		enqueue(&(farm->results), *line, ft_strlen(*line) + 1);
 		status = respond;
-		respond = check_if_comment(farm, *line);
-		if (respond > 0 && respond < 4)
-		{
-			ft_memdel((void **)line);
+		if ((respond = check_if_comment(farm, *line)) != 0 && line_omit(line))
 			continue ;
-		}
-		if (!(element = (t_room *)malloc(sizeof(t_room))))
-		{
-			ft_memdel((void **)*line);
+		if (!(element = (t_room *)malloc(sizeof(t_room))) && line_omit(line))
 			return (1);
-		}
 		if ((respond = ft_fill(*line, element, key)) == -1)
 			ft_memdel((void **)&element);
 		else if (respond == 0)
-		{
-			fill_start_end(farm, status, *key - 1);
-			farm->rooms = avl_insert_elem(farm->rooms, element, sizeof(t_room),
-				rooms_cmp);
-		}
+			data_structuring(farm, *key, status, element);
 		if (respond != -1)
 			ft_memdel((void **)line);
 		if (respond == 1)
