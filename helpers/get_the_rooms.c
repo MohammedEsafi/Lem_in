@@ -12,14 +12,6 @@
 
 #include "../lem_in.h"
 
-static void		fill_start_end(t_lem_in *farm, int status, int key)
-{
-	if (status == 1)
-		farm->start = key;
-	else if (status == 2)
-		farm->end = key;
-}
-
 static int		rooms_cmp(void *elem1, void *elem2)
 {
 	return (ft_strcmp(((t_room *)elem1)->name, ((t_room *)elem2)->name));
@@ -50,7 +42,7 @@ static int		ft_fill(char *line, t_room *element, int *key)
 
 int				line_omit(char **line)
 {
-	ft_memdel((void **)*line);
+	ft_memdel((void **)line);
 	return (1);
 }
 
@@ -73,7 +65,8 @@ int				get_the_rooms(char **line, t_lem_in *farm, int *key)
 	{
 		enqueue(&(farm->results), *line, ft_strlen(*line) + 1);
 		status = respond;
-		if ((respond = check_if_comment(farm, *line)) != 0 && line_omit(line))
+		respond = check_if_comment(farm, *line);
+		if ((respond > 0 && respond < 4) && line_omit(line))
 			continue ;
 		if (!(element = (t_room *)malloc(sizeof(t_room))) && line_omit(line))
 			return (1);

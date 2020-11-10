@@ -98,5 +98,6 @@ void			free_circuit(t_circuit *circuit);
 void			ft_error_handler(t_lem_in *farm);
 void			print_circuit(t_lem_in *farm);
 void			usage(t_lem_in *farm, int ac, char **av);
+void			fill_start_end(t_lem_in *farm, int status, int key);
 
 #endif

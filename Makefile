@@ -39,7 +39,8 @@ OBJS		= lem_in.o \
 				helpers/edmonds_karp.o \
 				helpers/routes_maker.o \
 				helpers/free_circuit.o \
-				helpers/info_printers.o
+				helpers/info_printers.o \
+				helpers/fill_start_end.o
 
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
