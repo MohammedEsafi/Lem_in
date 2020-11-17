@@ -6,13 +6,13 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 16:01:50 by tbareich          #+#    #+#             */
-/*   Updated: 2020/03/11 16:10:23 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/11/17 20:25:06 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lem_in.h"
 
-int		node_seen(t_lem_in *farm, int current, int next,
+static int		node_seen(t_lem_in *farm, int current, int next,
 					char *resid_capacity)
 {
 	t_node		*node;
@@ -33,90 +33,113 @@ int		node_seen(t_lem_in *farm, int current, int next,
 	return (0);
 }
 
-int		edmonds_karp(t_lem_in *farm, char *seen, char *resid_capacity)
+static int		edmonds_karp_init(t_lem_in **farm, int **prev, char **visited,
+							t_queue *q)
 {
-	int			*prev;
-	char		*visited;
-	t_queue		q;
-	int			*current;
-	t_node		*node;
-
-	init_queue(&q);
-	if (!(prev = (int *)malloc(sizeof(int) * farm->graph->v)))
+	init_queue(q);
+	if (!(*prev = (int *)malloc(sizeof(int) * (*farm)->graph->v)))
 		return (1);
-	if (!(visited = (char *)malloc(farm->graph->v)))
+	if (!(*visited = (char *)malloc((*farm)->graph->v)))
 	{
-		ft_memdel((void**)&prev);
+		ft_memdel((void**)prev);
 		return (1);
 	}
-	ft_memset(visited, 0, farm->graph->v);
-	enqueue(&q, &farm->start, sizeof(int));
-	visited[farm->start] = 1;
-	while (q.size > 0)
+	ft_memset(*visited, 0, (*farm)->graph->v);
+	enqueue(q, &(*farm)->start, sizeof(int));
+	(*visited)[(*farm)->start] = 1;
+	return (0);
+}
+
+static void		edmonds_karp_free(int **prev, int **current, char **visited,
+						t_queue *q)
+{
+	ft_memdel((void **)current);
+	ft_memdel((void **)prev);
+	ft_memdel((void **)visited);
+	free_queue(q);
+}
+
+static void		enqueue_node(t_edmonds_karp *params)
+{
+	enqueue(&(params->q), (int*)&(params->node)->key, sizeof(int));
+	(params->visited)[(params->node)->key] = 1;
+	(params->visited)[*(params->current)] = 1;
+	(params->prev)[(params->node)->key] = (*(params->current));
+}
+
+static int		node_handler(t_lem_in *farm, char *seen, char *resid_capacity,
+							t_edmonds_karp *params)
+{
+	if (seen[(params->node)->key] && node_seen(farm, *(params->current),
+					(params->node)->key, resid_capacity) == 0)
 	{
-		current = (int *)dequeue(&q);
-		node = (farm->graph->adj_list)[*current].head;
-		while (node)
+		(params->visited)[*(params->current)] = 1;
+		(params->node) = (params->node)->next;
+		return (1);
+	}
+	if (((*(params->current)) != farm->start && seen[(*(params->current))]))
+	{
+		if ((
+		(resid_capacity[(params->prev)[*(params->current)] * farm->graph->v +
+		*(params->current)] != 1 || resid_capacity[*(params->current) *
+		farm->graph->v + (params->node)->key] != 1)))
+			enqueue_node(params);
+	}
+	else
+		enqueue_node(params);
+	return (0);
+}
+
+static void		iterate_queue(t_lem_in *farm, char *seen, char *resid_capacity,
+							t_edmonds_karp *params)
+{
+	while ((params->q).size > 0)
+	{
+		(params->current) = (int *)dequeue(&(params->q));
+		(params->node) = (farm->graph->adj_list)[*(params->current)].head;
+		while ((params->node))
 		{
-			if (visited[node->key] == 0 &&
-					resid_capacity[(*current) * farm->graph->v + node->key])
+			if ((params->visited)[(params->node)->key] == 0 &&
+				resid_capacity[(*(params->current))
+				* farm->graph->v + (params->node)->key])
 			{
-				if (seen[node->key] &&
-					node_seen(farm, *current, node->key, resid_capacity) == 0)
-				{
-					visited[*current] = 1;
-					node = node->next;
+				if (node_handler(farm, seen, resid_capacity, params))
 					continue ;
-				}
-				if ((*current) != farm->start && seen[(*current)])
-				{
-					if (
-				resid_capacity[prev[*current] * farm->graph->v + *current] != 1
-				|| resid_capacity[*current * farm->graph->v + node->key] != 1)
-					{
-						enqueue(&q, (int*)&node->key, sizeof(int));
-						visited[node->key] = 1;
-						visited[*current] = 1;
-						prev[node->key] = (*current);
-					}
-				}
-				else
-				{
-					enqueue(&q, (int*)&node->key, sizeof(int));
-					visited[node->key] = 1;
-					visited[*current] = 1;
-					prev[node->key] = (*current);
-				}
-				if ((int)node->key == farm->end)
+				if ((int)(params->node)->key == farm->end)
 					break ;
 			}
-			node = node->next;
+			(params->node) = (params->node)->next;
 		}
-		if (node && (int)node->key == farm->end)
+		if ((params->node) && (int)(params->node)->key == farm->end)
 		{
-			prev[node->key] = *current;
-			*current = node->key;
+			(params->prev)[(params->node)->key] = *(params->current);
+			*(params->current) = (params->node)->key;
 			break ;
 		}
-		ft_memdel((void**)&current);
+		ft_memdel((void**)&(params->current));
 	}
-	if (!node || (int)node->key != farm->end)
+}
+
+int				edmonds_karp(t_lem_in *farm, char *seen, char *resid_capacity)
+{
+	t_edmonds_karp	p;
+
+	if (edmonds_karp_init(&farm, &(p.prev), &(p.visited), &(p.q)))
+		return (1);
+	iterate_queue(farm, seen, resid_capacity, &p);
+	if (!(p.node) || (int)(p.node)->key != farm->end)
 	{
-		ft_memdel((void **)&current);
-		ft_memdel((void **)&prev);
-		ft_memdel((void **)&visited);
-		free_queue(&q);
+		edmonds_karp_free(&(p.prev), &(p.current), &(p.visited), &(p.q));
 		return (1);
 	}
-	while ((*current) != farm->start)
+	while ((*(p.current)) != farm->start)
 	{
-		resid_capacity[(*current) * farm->graph->v + prev[*current]] += 1;
-		resid_capacity[prev[*current] * farm->graph->v + (*current)] -= 1;
-		(*current) = prev[*current];
+		resid_capacity[(*(p.current)) * farm->graph->v +
+		(p.prev)[*(p.current)]] += 1;
+		resid_capacity[(p.prev)[*(p.current)] * farm->graph->v +
+		(*(p.current))] -= 1;
+		(*(p.current)) = (p.prev)[*(p.current)];
 	}
-	ft_memdel((void **)&current);
-	ft_memdel((void **)&prev);
-	ft_memdel((void **)&visited);
-	free_queue(&q);
+	edmonds_karp_free(&(p.prev), &(p.current), &(p.visited), &(p.q));
 	return (0);
 }

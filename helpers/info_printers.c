@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 18:51:20 by tbareich          #+#    #+#             */
-/*   Updated: 2020/11/07 18:55:56 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/11/08 12:21:11 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ static void		print_infos(t_lem_in *farm)
 		ft_printf("\n{red}required iterations : %d\n", farm->required_iter);
 	ft_printf("\n{blue}total ants  : %d\n", farm->ants);
 	ft_printf("total rooms : %d\n", farm->graph->v);
-	ft_printf("{start room : %s\n",
+	ft_printf("start room : %s\n",
 			((t_room *)((farm->graph->adj_list[farm->start]).content))->name);
-	ft_printf("{end room   : %s\n{eoc}",
+	ft_printf("end room   : %s\n{eoc}",
 			((t_room *)((farm->graph->adj_list[farm->end]).content))->name);
 	ft_printf("\n{yellow}circuit size     : %d\n", farm->circuit->size);
-	ft_printf("total edges      : %d\n", farm->circuit->total_edges);
+	ft_printf("total nodes      : %d\n", farm->circuit->total_edges);
 	ft_printf("total iterations : %d \n\n{eoc}", farm->circuit->score - 1);
 }
 
