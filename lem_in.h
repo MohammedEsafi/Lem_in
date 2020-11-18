@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:40:03 by mesafi            #+#    #+#             */
-/*   Updated: 2020/11/08 10:52:37 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/11/17 19:23:11 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,15 @@ typedef struct	s_lem_in
 	t_circuit		*circuit;
 	char			options;
 }				t_lem_in;
+
+typedef struct	s_edmonds_karp
+{
+	int			*prev;
+	char		*visited;
+	t_queue		q;
+	int			*current;
+	t_node		*node;
+}				t_edmonds_karp;
 
 /*
  ** Lem-in Functions
