@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 18:51:20 by tbareich          #+#    #+#             */
-/*   Updated: 2020/11/18 12:25:08 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/11/18 14:04:40 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,8 @@ static void		print_infos(t_lem_in *farm)
 			((t_room *)((farm->graph->adj_list[farm->end]).content))->name);
 	ft_printf("\n{yellow}circuit size     : %d\n", farm->circuit->size);
 	ft_printf("total nodes      : %d\n", farm->circuit->total_edges);
-	if ((unsigned)(farm->circuit->score) <= (unsigned)(farm->required_iter + 1))
-		ft_printf("total iterations : {green}%d \n\n{eoc}", farm->circuit->score
-					- 1);
-	else
-		ft_printf("total iterations : {red}%d \n\n{eoc}", farm->circuit->score
-					- 1);
+	ft_printf("total iterations : %d \n\n{eoc}", farm->circuit->score
+				- 1);
 }
 
 static void		print_path(t_lem_in *farm, t_list *path)
