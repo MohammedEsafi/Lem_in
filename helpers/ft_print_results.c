@@ -47,8 +47,7 @@ static t_list	*ft_goto(t_list *node, t_list *head, int *index)
 	if (node->next == NULL)
 	{
 		*index = 0;
-		if (node->next == NULL)
-			ft_printf("\n");
+		ft_printf("\n");
 		return (head);
 	}
 	else
