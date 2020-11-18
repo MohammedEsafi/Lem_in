@@ -63,10 +63,7 @@ int			get_the_ways(t_lem_in *farm,
 	while (q.size != 0)
 	{
 		if (loophole(farm, &q, visited, prev))
-		{
 			get_the_route(farm, total_edges, prev, circuit);
-			break ;
-		}
 	}
 	free_queue(&q);
 	return (0);
