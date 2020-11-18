@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:40:03 by mesafi            #+#    #+#             */
-/*   Updated: 2020/11/17 19:23:11 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/11/18 12:10:37 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,14 @@ typedef struct	s_lem_in
 	char			options;
 }				t_lem_in;
 
-typedef struct	s_edmonds_karp
+typedef struct	s_edmonds_karp_params
 {
-	int			*prev;
 	char		*visited;
-	t_queue		q;
+	int			*prev;
 	int			*current;
 	t_node		*node;
-}				t_edmonds_karp;
+	t_queue		q;
+}				t_edmonds_karp_params;
 
 /*
  ** Lem-in Functions
@@ -112,5 +112,7 @@ int				get_the_route(t_lem_in *farm, unsigned *total_edges,
 					int prev[farm->graph->v], t_circuit *circuit);
 int				get_the_ways(t_lem_in *farm, unsigned *total_edges,
 					t_circuit *circuit);
+void			bfs(t_lem_in *farm, char *seen, char *resid_capacity,
+							t_edmonds_karp_params *params);
 
 #endif

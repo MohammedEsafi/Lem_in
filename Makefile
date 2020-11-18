@@ -6,7 +6,7 @@
 #    By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/20 13:51:29 by mesafi            #+#    #+#              #
-#    Updated: 2020/11/07 18:54:53 by tbareich         ###   ########.fr        #
+#    Updated: 2020/11/18 12:11:51 by tbareich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ OBJS		= lem_in.o \
 				helpers/info_printers.o \
 				helpers/fill_start_end.o \
 				helpers/get_the_route.o \
-				helpers/get_the_ways.o
+				helpers/get_the_ways.o \
+				helpers/bfs.o
 
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
