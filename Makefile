@@ -40,7 +40,9 @@ OBJS		= lem_in.o \
 				helpers/routes_maker.o \
 				helpers/free_circuit.o \
 				helpers/info_printers.o \
-				helpers/fill_start_end.o
+				helpers/fill_start_end.o \
+				helpers/get_the_route.o \
+				helpers/get_the_ways.o
 
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror

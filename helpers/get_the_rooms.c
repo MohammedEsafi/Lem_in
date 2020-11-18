@@ -40,13 +40,17 @@ static int		ft_fill(char *line, t_room *element, int *key)
 	return (0);
 }
 
-int				line_omit(char **line)
+static int		line_omit(char **line, int boolean)
 {
-	ft_memdel((void **)line);
-	return (1);
+	if (boolean)
+	{
+		ft_memdel((void **)line);
+		return (1);
+	}
+	return (0);
 }
 
-void			data_structuring(t_lem_in *farm, int key, int status,
+static void		data_structuring(t_lem_in *farm, int key, int status,
 					t_room *element)
 {
 	fill_start_end(farm, status, key - 1);
@@ -66,9 +70,9 @@ int				get_the_rooms(char **line, t_lem_in *farm, int *key)
 		enqueue(&(farm->results), *line, ft_strlen(*line) + 1);
 		status = respond;
 		respond = check_if_comment(farm, *line);
-		if ((respond > 0 && respond < 4) && line_omit(line))
+		if (line_omit(line, (respond > 0 && respond < 4)))
 			continue ;
-		if (!(element = (t_room *)malloc(sizeof(t_room))) && line_omit(line))
+		if (line_omit(line, !(element = (t_room *)malloc(sizeof(t_room)))))
 			return (1);
 		if ((respond = ft_fill(*line, element, key)) == -1)
 			ft_memdel((void **)&element);

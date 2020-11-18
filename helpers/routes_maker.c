@@ -12,6 +12,19 @@
 
 #include "../lem_in.h"
 
+static t_list		*negative_case(t_lem_in *farm, t_circuit *circuit,
+						t_path *path, int *i)
+{
+	circuit->total_edges -= path->size;
+	circuit->size -= 1;
+	circuit->rest = (circuit->total_edges + farm->ants) % circuit->size;
+	circuit->score = (circuit->total_edges + farm->ants) /
+						circuit->size;
+	ft_lstdelat(&(circuit->routes), *i);
+	*i = -1;
+	return (circuit->routes);
+}
+
 static void			ft_circuit_score(t_lem_in *farm, t_circuit *circuit)
 {
 	t_list		*node;
@@ -29,14 +42,7 @@ static void			ft_circuit_score(t_lem_in *farm, t_circuit *circuit)
 		path->ants = circuit->score - path->size;
 		if (path->ants <= 0)
 		{
-			circuit->total_edges -= path->size;
-			circuit->size -= 1;
-			circuit->rest = (circuit->total_edges + farm->ants) % circuit->size;
-			circuit->score = (circuit->total_edges + farm->ants) /
-								circuit->size;
-			ft_lstdelat(&(circuit->routes), i);
-			i = -1;
-			node = circuit->routes;
+			node = negative_case(farm, circuit, path, &i);
 			continue ;
 		}
 		path->ants += (circuit->rest-- > 0);
@@ -67,91 +73,6 @@ static t_circuit	*init_circuit(void)
 	return (circuit);
 }
 
-static t_path		*init_path(void)
-{
-	t_path	*path;
-
-	if (!(path = (t_path *)malloc(sizeof(t_path))))
-		return (NULL);
-	path->size = 1;
-	path->list = NULL;
-	path->ants = 0;
-	return (path);
-}
-
-static int			get_the_route(t_lem_in *farm, unsigned *total_edges,
-								int prev[farm->graph->v], t_circuit *circuit)
-{
-	t_path		*path;
-	t_list		*node;
-	int			current;
-
-	if (!(path = init_path()))
-		return (-1);
-	current = farm->end;
-	ft_lstadd(&(path->list), ft_lstnew(&(current), sizeof(int)));
-	farm->seen[current] = 1;
-	node = path->list;
-	while (current != farm->start)
-	{
-		current = prev[current];
-		farm->seen[current] = 1;
-		if ((node->next = ft_lstnew(&(current), sizeof(int))) == 0)
-			return (-1);
-		path->size += 1;
-		node = node->next;
-	}
-	ft_lstadd(&(circuit->routes), ft_lstnew(path, sizeof(t_path)));
-	circuit->size += 1;
-	*total_edges += path->size;
-	return (0);
-}
-
-static int			get_the_way(t_lem_in *farm,
-						unsigned *total_edges, t_circuit *circuit)
-{
-	t_node		*node;
-	int			*prev;
-	char		*visited;
-	int			current;
-	t_queue		q;
-
-	init_queue(&q);
-	if (!(prev = (int *)malloc(sizeof(int) * farm->graph->v)))
-		return (-1);
-	if (!(visited = (char *)malloc(farm->graph->v)))
-	{
-		ft_memdel((void**)&prev);
-		return (-1);
-	}
-	ft_memset(visited, 0, farm->graph->v);
-	enqueue(&q, &farm->start, sizeof(int));
-	visited[farm->start] = 1;
-	while (q.size != 0)
-	{
-		current = *((int *)dequeue(&q));
-		node = farm->graph->adj_list[current].head;
-		while (node != NULL)
-		{
-			if (farm->capacity[node->key * farm->graph->v + current] == 2
-				&& visited[node->key] == 0)
-			{
-				prev[node->key] = current;
-				if (node->key == (unsigned)farm->end)
-				{
-					get_the_route(farm, total_edges, prev, circuit);
-					break ;
-				}
-				enqueue(&q, &node->key, sizeof(int));
-				visited[node->key] = 1;
-			}
-			node = node->next;
-		}
-	}
-	free_queue(&q);
-	return (0);
-}
-
 int					routes_maker(t_lem_in *farm)
 {
 	t_node		*node;
@@ -160,7 +81,7 @@ int					routes_maker(t_lem_in *farm)
 	node = farm->graph->adj_list[farm->start].head;
 	if (!(circuit = init_circuit()))
 		return (1);
-	get_the_way(farm, &(circuit->total_edges), circuit);
+	get_the_ways(farm, &(circuit->total_edges), circuit);
 	ft_circuit_score(farm, circuit);
 	if (circuit->score <= farm->score)
 		ft_switcher(farm, circuit);
