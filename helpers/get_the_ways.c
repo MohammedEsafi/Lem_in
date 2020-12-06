@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_the_ways.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesafi <mesafi@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 08:27:23 by mesafi            #+#    #+#             */
-/*   Updated: 2020/11/18 08:27:25 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/12/06 10:39:37 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	loophole(t_lem_in *farm, t_queue *q, char *visited, int *prev)
 	node = farm->graph->adj_list[current].head;
 	while (node != NULL)
 	{
-		if (farm->capacity[node->key * farm->graph->v + current] == 2
+		if (farm->capacity[current * farm->graph->v + node->key] == 0
 			&& visited[node->key] == 0)
 		{
 			prev[node->key] = current;

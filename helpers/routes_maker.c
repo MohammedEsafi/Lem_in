@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 13:04:09 by tbareich          #+#    #+#             */
-/*   Updated: 2020/03/12 19:08:49 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/12/06 12:52:52 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int					routes_maker(t_lem_in *farm)
 		return (1);
 	get_the_ways(farm, &(circuit->total_edges), circuit);
 	ft_circuit_score(farm, circuit);
-	if (circuit->score <= farm->score)
+	if (circuit->score < farm->score)
 		ft_switcher(farm, circuit);
 	else
 		free_circuit(circuit);

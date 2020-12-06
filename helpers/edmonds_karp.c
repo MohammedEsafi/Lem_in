@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 16:01:50 by tbareich          #+#    #+#             */
-/*   Updated: 2020/11/18 12:11:12 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/12/06 13:26:53 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,15 @@ int				edmonds_karp(t_lem_in *farm, char *seen, char *resid_capacity)
 						&(params.q));
 		return (1);
 	}
-	while ((*(params.current)) != farm->start)
+	while (TRUE)
 	{
 		resid_capacity[(*(params.current)) * farm->graph->v +
 		(params.prev)[*(params.current)]] += 1;
 		resid_capacity[(params.prev)[*(params.current)] * farm->graph->v +
 		(*(params.current))] -= 1;
 		(*(params.current)) = (params.prev)[*(params.current)];
+		if ((*(params.current)) == farm->start)
+			break ;
 	}
 	edmonds_karp_free(&(params.prev), &(params.current), &(params.visited),
 					&(params.q));
