@@ -33,14 +33,35 @@ t_lem_in		*ft_init(void)
 	return (farm);
 }
 
+void			free_graph(t_graph *graph)
+{
+	t_node	*node;
+	t_node	*next;
+
+	while (graph->v)
+	{
+		node = graph->adj_list[graph->v - 1].head;
+		while (node != NULL)
+		{
+			next = node->next;
+			ft_memdel((void **)&node);
+			node = next;
+		}
+		graph->v -= 1;
+	}
+	ft_memdel((void **)&(graph->adj_list));
+	ft_memdel((void **)&graph);
+}
+
 void			ft_free(t_lem_in *farm)
 {
-	free_queue(&(farm->results));
 	free_circuit(farm->circuit);
+	free_queue(&(farm->results));
 	if (farm->seen != NULL)
 		ft_memdel((void **)&(farm->seen));
 	if (farm->capacity != NULL)
 		ft_memdel((void **)&(farm->capacity));
+	free_graph(farm->graph);
 	ft_memdel((void **)&farm);
 }
 
