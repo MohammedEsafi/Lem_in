@@ -114,5 +114,6 @@ int				get_the_ways(t_lem_in *farm, unsigned *total_edges,
 					t_circuit *circuit);
 void			bfs(t_lem_in *farm, char *seen, char *resid_capacity,
 							t_edmonds_karp_params *params);
+void			del_path(t_list *node);
 
 #endif

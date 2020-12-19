@@ -43,7 +43,8 @@ OBJS		= lem_in.o \
 				helpers/fill_start_end.o \
 				helpers/get_the_route.o \
 				helpers/get_the_ways.o \
-				helpers/bfs.o
+				helpers/bfs.o \
+				helpers/del_path.o
 
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
