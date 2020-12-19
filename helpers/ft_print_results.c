@@ -78,7 +78,7 @@ static void		ants_trajects_printer(t_lem_in *farm)
 		}
 		if (path->remnant == 0)
 		{
-			ft_lstdelat(&(farm->circuit->routes), i);
+			del_path(ft_lstdelat(&(farm->circuit->routes), i));
 			--i;
 		}
 		node = ft_goto(node, farm->circuit->routes, &i);

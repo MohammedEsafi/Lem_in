@@ -20,7 +20,7 @@ static t_list		*negative_case(t_lem_in *farm, t_circuit *circuit,
 	circuit->rest = (circuit->total_edges + farm->ants) % circuit->size;
 	circuit->score = (circuit->total_edges + farm->ants) /
 						circuit->size;
-	ft_lstdelat(&(circuit->routes), *i);
+	del_path(ft_lstdelat(&(circuit->routes), *i));
 	*i = -1;
 	return (circuit->routes);
 }
