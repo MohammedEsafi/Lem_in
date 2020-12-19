@@ -28,23 +28,27 @@ static int	ft_filler(int **prev, char **visited, int vertices)
 static int	loophole(t_lem_in *farm, t_queue *q, char *visited, int *prev)
 {
 	t_node		*node;
-	int			current;
+	int			*current;
 
-	current = *((int *)dequeue(q));
-	node = farm->graph->adj_list[current].head;
+	current = (int *)dequeue(q);
+	node = farm->graph->adj_list[*current].head;
 	while (node != NULL)
 	{
-		if (farm->capacity[current * farm->graph->v + node->key] == 0
+		if (farm->capacity[*current * farm->graph->v + node->key] == 0
 			&& visited[node->key] == 0)
 		{
-			prev[node->key] = current;
+			prev[node->key] = *current;
 			if (node->key == (unsigned)farm->end)
+			{
+				ft_memdel((void **)&current);
 				return (1);
+			}
 			enqueue(q, &node->key, sizeof(int));
 			visited[node->key] = 1;
 		}
 		node = node->next;
 	}
+	ft_memdel((void **)&current);
 	return (0);
 }
 
@@ -66,5 +70,7 @@ int			get_the_ways(t_lem_in *farm,
 			get_the_route(farm, total_edges, prev, circuit);
 	}
 	free_queue(&q);
+	ft_memdel((void **)&prev);
+	ft_memdel((void **)&visited);
 	return (0);
 }
