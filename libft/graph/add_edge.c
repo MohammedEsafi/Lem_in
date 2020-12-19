@@ -34,6 +34,7 @@ int				add_edge(t_graph *graph, unsigned int src, unsigned int dest)
 	graph->adj_list[src].head = node;
 	if ((node = new_node(src)) == 0)
 	{
+		// NOTE (-> Tareq): you are trying to free a none allocated memory
 		ft_memdel((void **)&node);
 		return (-1);
 	}
