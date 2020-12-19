@@ -74,10 +74,11 @@ int				get_the_rooms(char **line, t_lem_in *farm, int *key)
 			continue ;
 		if (line_omit(line, !(element = (t_room *)malloc(sizeof(t_room)))))
 			return (1);
-		if ((respond = ft_fill(*line, element, key)) == -1)
-			ft_memdel((void **)&element);
-		else if (respond == 0)
+		respond = ft_fill(*line, element, key);
+		if (respond == 0)
 			data_structuring(farm, *key, status, element);
+		else
+			ft_memdel((void **)&element);
 		if (respond != -1)
 			ft_memdel((void **)line);
 		if (respond == 1)
