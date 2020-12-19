@@ -12,19 +12,6 @@
 
 #include "../lem_in.h"
 
-static void	del_child(t_list *child)
-{
-	ft_memdel((void **)&(child->content));
-	ft_memdel((void **)&child);
-}
-
-static void	del_path(t_list *node)
-{
-	ft_lstiter(((t_path *)(node->content))->list, del_child);
-	ft_memdel((void **)&(node->content));
-	ft_memdel((void **)&node);
-}
-
 void		free_circuit(t_circuit *circuit)
 {
 	if (circuit == NULL)
