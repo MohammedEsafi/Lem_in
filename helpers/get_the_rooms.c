@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 09:04:05 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/12 19:26:13 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/12/21 23:29:02 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static int		ft_fill(char *line, t_room *element, int *key)
 	*indicator = '\0';
 	if (*line == 'L')
 		return (1);
-	element->name = ft_strdup(line);
+	if ((element->name = ft_strdup(line)) == 0)
+		return (1);
 	element->key = *key;
 	element->ant = -1;
 	++(*key);
@@ -56,6 +57,7 @@ static void		data_structuring(t_lem_in *farm, int key, int status,
 	fill_start_end(farm, status, key - 1);
 	farm->rooms = avl_insert_elem(farm->rooms, element, sizeof(t_room),
 		rooms_cmp);
+	ft_memdel((void **)&element);
 }
 
 int				get_the_rooms(char **line, t_lem_in *farm, int *key)

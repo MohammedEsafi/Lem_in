@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graph.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 19:42:26 by tbareich          #+#    #+#             */
-/*   Updated: 2020/03/01 13:13:59 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/12/21 23:23:06 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ typedef struct	s_vertex
 t_graph			*create_graph(unsigned v);
 int				add_edge(t_graph *graph, unsigned int src, unsigned int dest);
 void			print_graph(t_graph *graph);
+void			delete_graph(t_graph *graph);
 
 #endif

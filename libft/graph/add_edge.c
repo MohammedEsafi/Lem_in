@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 19:43:06 by tbareich          #+#    #+#             */
-/*   Updated: 2020/03/01 12:14:27 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/12/21 23:35:25 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,19 @@ static t_node	*new_node(unsigned int key)
 
 int				add_edge(t_graph *graph, unsigned int src, unsigned int dest)
 {
-	t_node	*node;
+	t_node	*node1;
+	t_node	*node2;
 
-	if ((node = new_node(dest)) == 0)
+	if ((node1 = new_node(dest)) == 0)
 		return (-1);
-	node->next = graph->adj_list[src].head;
-	graph->adj_list[src].head = node;
-	if ((node = new_node(src)) == 0)
+	node1->next = graph->adj_list[src].head;
+	graph->adj_list[src].head = node1;
+	if ((node2 = new_node(src)) == 0)
 	{
-		// NOTE (-> Tareq): you are trying to free a none allocated memory
-		ft_memdel((void **)&node);
+		ft_memdel((void **)&node1);
 		return (-1);
 	}
-	node->next = graph->adj_list[dest].head;
-	graph->adj_list[dest].head = node;
+	node2->next = graph->adj_list[dest].head;
+	graph->adj_list[dest].head = node2;
 	return (0);
 }

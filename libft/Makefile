@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+         #
+#    By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/29 23:34:49 by mesafi            #+#    #+#              #
-#    Updated: 2020/03/02 17:50:02 by mesafi           ###   ########.fr        #
+#    Updated: 2020/12/07 19:51:00 by tbareich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,6 +107,7 @@ OBJS = lib/bst_delete.o \
 			graph/add_edge.o \
 			graph/create_graph.o \
 			graph/print_graph.o \
+			graph/delete_graph.o \
 			array_list/append.o \
 			array_list/init_array_list.o \
 			math/max.o \

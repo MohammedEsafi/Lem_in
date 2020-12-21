@@ -6,7 +6,7 @@
 #    By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/20 13:51:29 by mesafi            #+#    #+#              #
-#    Updated: 2020/11/18 12:11:51 by tbareich         ###   ########.fr        #
+#    Updated: 2020/12/21 23:32:42 by tbareich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ OBJS		= lem_in.o \
 				avl/avl_insert.o \
 				avl/avl_helpers.o \
 				avl/avl_create.o \
+				avl/avl_delete.o \
 				avl/avl_print.o \
 				helpers/ft_finder.o \
 				helpers/edmonds_karp.o \
