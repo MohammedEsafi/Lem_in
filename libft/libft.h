@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 23:42:38 by mesafi            #+#    #+#             */
-/*   Updated: 2020/11/06 17:20:28 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/12/25 19:11:15 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,10 +115,6 @@ void				ft_putnbr_fd(int n, int fd);
 int					get_next_line(const int fd, char **line);
 int					ft_is_number(char *str);
 void				ft_strip(char **str, char *chars);
-int					abs(int x);
-long long			ll_abs(long long x);
-unsigned long long	ull_abs(unsigned long long x);
-unsigned			u_abs(unsigned x);
 
 /*
  ** Memory Functions
@@ -169,7 +165,7 @@ t_bst				*bst_max(t_bst *root);
 void				bst_delete(t_bst *root);
 void				bst_inorder(t_bst *root);
 int					bst_modify_addr(t_bst *node, void *content,
-				size_t content_size);
+		size_t content_size);
 
 /*
  ** Binary Search Functions
@@ -189,6 +185,10 @@ int					arrlst_size(t_arrlst arrlst);
 
 int					max(int a, int b);
 int					min(int a, int b);
+int					abs(int x);
+long long			ll_abs(long long x);
+unsigned long long	ull_abs(unsigned long long x);
+unsigned			u_abs(unsigned x);
 
 /*
  ** extra Functions
@@ -196,7 +196,7 @@ int					min(int a, int b);
 */
 
 char				*ft_strjoin_free(char const *s1, char const *s2,
-				int option);
+						int option);
 char				*ft_strdup_free(char **s1);
 int					ft_printf(const char *format, ...);
 int					ft_dprintf(int fd, const char *format, ...);

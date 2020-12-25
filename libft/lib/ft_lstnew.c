@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 00:15:12 by tbareich          #+#    #+#             */
-/*   Updated: 2020/02/17 19:47:06 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/02/29 20:05:56 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 t_list	*ft_lstnew(void const *content, size_t content_size)
 {
-	t_list	*p;
+	t_list	*new_node;
 
-	p = (t_list *)malloc(sizeof(t_list));
-	if (p == NULL)
+	new_node = (t_list *)malloc(sizeof(t_list));
+	if (new_node == NULL)
 		return (NULL);
-	p->next = NULL;
+	new_node->next = NULL;
 	if (content == NULL)
 	{
-		p->content = NULL;
-		p->content_size = 0;
-		return (p);
+		new_node->content = NULL;
+		new_node->content_size = 0;
+		return (new_node);
 	}
-	p->content = ft_memalloc(content_size);
-	if (p->content == NULL)
+	new_node->content = malloc(content_size);
+	if (new_node->content == NULL)
 	{
-		free(p);
+		ft_memdel((void **)&new_node);
 		return (NULL);
 	}
-	ft_memcpy(p->content, content, content_size);
-	p->content_size = content_size;
-	return (p);
+	ft_memcpy(new_node->content, content, content_size);
+	new_node->content_size = content_size;
+	return (new_node);
 }

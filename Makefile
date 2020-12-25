@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+         #
+#    By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/20 13:51:29 by mesafi            #+#    #+#              #
-#    Updated: 2020/02/27 10:11:06 by mesafi           ###   ########.fr        #
+#    Updated: 2020/12/21 23:32:42 by tbareich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,13 +29,24 @@ OBJS		= lem_in.o \
 				helpers/ft_print_results.o \
 				helpers/get_the_links.o \
 				avl/avl_rot.o \
+				avl/avl_inorder.o \
 				avl/avl_find.o \
 				avl/avl_insert.o \
 				avl/avl_helpers.o \
 				avl/avl_create.o \
+				avl/avl_delete.o \
 				avl/avl_print.o \
-				helpers/ft_finder.o
-				
+				helpers/ft_finder.o \
+				helpers/edmonds_karp.o \
+				helpers/routes_maker.o \
+				helpers/free_circuit.o \
+				helpers/info_printers.o \
+				helpers/fill_start_end.o \
+				helpers/get_the_route.o \
+				helpers/get_the_ways.o \
+				helpers/bfs.o \
+				helpers/del_path.o
+
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 
@@ -51,15 +62,15 @@ WHITE		= \033[37m
 RESET		= \033[0m
 
 # Start rules
-all: build $(NAME)
+all:  $(NAME)
 
 build:
 	@if [ ! -f $(NAME) ] ; then \
 		echo "⇾ building $(NAME)..." ; \
 	fi;
-
-$(NAME): $(OBJS) $(HEADER)
 	@make -s -C libft
+
+$(NAME): build $(OBJS) $(HEADER)
 	@if [ ! -f $(NAME) ] ; then \
 		echo "⇾ $(NAME) $(GREEN)done$(RESET)"; \
 	else \

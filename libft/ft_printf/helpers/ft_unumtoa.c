@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/27 22:55:05 by tbareich          #+#    #+#             */
-/*   Updated: 2020/11/06 17:10:03 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/12/25 19:10:39 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char				*ft_unumtoa(unsigned long long n)
 	char			*str;
 	unsigned int	length;
 
-	n = u_abs(n);
+	n = ull_abs(n);
 	length = nb_len(n);
 	if ((str = ft_strnew(length)) == NULL)
 		return (NULL);

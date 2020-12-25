@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dequeue.c                                          :+:      :+:    :+:   */
+/*   delete_graph.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/18 11:28:29 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/29 19:47:25 by tbareich         ###   ########.fr       */
+/*   Created: 2020/12/07 19:19:04 by tbareich          #+#    #+#             */
+/*   Updated: 2020/12/21 23:35:51 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "queue.h"
+#include "graph.h"
 
-void		*dequeue(t_queue *queue)
+void			delete_graph(t_graph *graph)
 {
-	t_list	*tmp;
-	void	*content;
+	t_node	*node;
+	t_node	*next;
 
-	if (queue->front == NULL)
-		return (NULL);
-	queue->size -= 1;
-	tmp = queue->front;
-	queue->front = queue->front->next;
-	if (queue->front == NULL)
-		queue->last = NULL;
-	content = tmp->content;
-	ft_memdel((void **)&tmp);
-	return (content);
+	while (graph->v)
+	{
+		node = graph->adj_list[graph->v - 1].head;
+		while (node != NULL)
+		{
+			next = node->next;
+			ft_memdel((void **)&node);
+			node = next;
+		}
+		graph->v -= 1;
+	}
+	ft_memdel((void **)&(graph->adj_list));
+	ft_memdel((void **)&graph);
 }

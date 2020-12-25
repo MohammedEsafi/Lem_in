@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   queue.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 12:37:20 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/25 10:30:37 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/02/29 19:09:23 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ typedef struct	s_queue
 */
 
 void			init_queue(t_queue *q);
-void			enqueue(t_queue *q, t_list *node);
-t_list			*dequeue(t_queue *q);
+int				enqueue(t_queue *queue, void *content, size_t size);
+void			*dequeue(t_queue *q);
 void			free_queue(t_queue *queue);
 
 #endif

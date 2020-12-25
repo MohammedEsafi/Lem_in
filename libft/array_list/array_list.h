@@ -1,27 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   array_list.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 15:51:19 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/05 16:18:36 by mesafi           ###   ########.fr       */
+/*   Created: 2020/01/20 12:37:25 by mesafi            #+#    #+#             */
+/*   Updated: 2020/03/02 17:48:50 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#ifndef ARRAY_LIST_H
 
-void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
+/*
+ ** Definitions
+*/
+
+# define ARRAY_LIST_H
+
+# define INITIAL_CAPACITY 20
+
+/*
+ ** Includes
+*/
+
+# include "../libft.h"
+
+/*
+ ** Structures
+*/
+
+typedef struct	s_array_list
 {
-	t_list	*node;
-	t_list	*temporal;
+	void	**list;
+	int		len;
+	int		cursor;
+}				t_array_list;
 
-	node = lst;
-	while (node != NULL)
-	{
-		temporal = node->next;
-		(*f)(node);
-		node = temporal;
-	}
-}
+/*
+ ** Array List Functions
+*/
+
+void			init_array_list(t_array_list *arr);
+void			append(t_array_list *arr, void *p);
+
+#endif

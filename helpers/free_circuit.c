@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dequeue.c                                          :+:      :+:    :+:   */
+/*   free_circuit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/18 11:28:29 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/29 19:47:25 by tbareich         ###   ########.fr       */
+/*   Created: 2020/03/05 14:22:22 by mesafi            #+#    #+#             */
+/*   Updated: 2020/03/09 05:08:20 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "queue.h"
+#include "../lem_in.h"
 
-void		*dequeue(t_queue *queue)
+void		free_circuit(t_circuit *circuit)
 {
-	t_list	*tmp;
-	void	*content;
-
-	if (queue->front == NULL)
-		return (NULL);
-	queue->size -= 1;
-	tmp = queue->front;
-	queue->front = queue->front->next;
-	if (queue->front == NULL)
-		queue->last = NULL;
-	content = tmp->content;
-	ft_memdel((void **)&tmp);
-	return (content);
+	if (circuit == NULL)
+		return ;
+	ft_lstiter(circuit->routes, del_path);
+	ft_memdel((void **)&circuit);
 }

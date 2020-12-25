@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   fill_start_end.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesafi <mesafi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/05 15:51:19 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/05 16:18:36 by mesafi           ###   ########.fr       */
+/*   Created: 2020/11/09 09:41:01 by mesafi            #+#    #+#             */
+/*   Updated: 2020/11/09 09:41:03 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "../lem_in.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
+void		fill_start_end(t_lem_in *farm, int status, int key)
 {
-	t_list	*node;
-	t_list	*temporal;
-
-	node = lst;
-	while (node != NULL)
-	{
-		temporal = node->next;
-		(*f)(node);
-		node = temporal;
-	}
+	if (status == 1)
+		farm->start = key;
+	else if (status == 2)
+		farm->end = key;
 }

@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dequeue.c                                          :+:      :+:    :+:   */
+/*   abs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/18 11:28:29 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/29 19:47:25 by tbareich         ###   ########.fr       */
+/*   Created: 2020/11/06 17:08:41 by tbareich          #+#    #+#             */
+/*   Updated: 2020/11/06 17:13:26 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "queue.h"
-
-void		*dequeue(t_queue *queue)
+int					abs(int x)
 {
-	t_list	*tmp;
-	void	*content;
+	return (x < 0 ? -x : x);
+}
 
-	if (queue->front == NULL)
-		return (NULL);
-	queue->size -= 1;
-	tmp = queue->front;
-	queue->front = queue->front->next;
-	if (queue->front == NULL)
-		queue->last = NULL;
-	content = tmp->content;
-	ft_memdel((void **)&tmp);
-	return (content);
+long long			ll_abs(long long x)
+{
+	return (x < 0 ? -x : x);
+}
+
+unsigned long long	ull_abs(unsigned long long x)
+{
+	return (x < 0 ? -x : x);
+}
+
+unsigned			u_abs(unsigned x)
+{
+	return (x < 0 ? -x : x);
 }

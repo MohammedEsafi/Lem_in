@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_the_links.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:02:28 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/27 10:44:12 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/12 19:26:34 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	find_room(void *elem1, void *elem2)
 {
-	return (ft_strcmp(elem1, ((t_rooms *)elem2)->name));
+	return (ft_strcmp(elem1, ((t_room *)elem2)->name));
 }
 
 static int	ft_get_edge(t_lem_in *farm, char *line)
@@ -26,17 +26,18 @@ static int	ft_get_edge(t_lem_in *farm, char *line)
 
 	if (!(middle = ft_strchr(line, '-')))
 		return (1);
-	*middle++ = '\0';
+	*middle = '\0';
+	++middle;
 	if (!(room1 = avl_find_elem(farm->rooms, line, find_room)))
 		return (1);
 	if (!(room2 = avl_find_elem(farm->rooms, middle, find_room)))
 		return (1);
-	add_edge(farm->graph, ((t_rooms *)(room1->content))->key,
-		((t_rooms *)(room2->content))->key);
-	index = ((t_rooms *)(room1->content))->key;
+	add_edge(farm->graph, ((t_room *)(room1->content))->key,
+		((t_room *)(room2->content))->key);
+	index = ((t_room *)(room1->content))->key;
 	farm->graph->adj_list[index].content = room1->content;
 	farm->graph->adj_list[index].content_size = room1->content_size;
-	index = ((t_rooms *)(room2->content))->key;
+	index = ((t_room *)(room2->content))->key;
 	farm->graph->adj_list[index].content = room2->content;
 	farm->graph->adj_list[index].content_size = room2->content_size;
 	return (0);
@@ -51,8 +52,8 @@ int			get_the_links(char **line, t_lem_in *farm, int key)
 		return (1);
 	while (*line != NULL && respond > 0)
 	{
-		enqueue(&(farm->results), ft_lstnew(*line, ft_strlen(*line) + 1));
-		respond = !(check_if_comment(*line));
+		enqueue(&(farm->results), *line, ft_strlen(*line) + 1);
+		respond = !(check_if_comment(farm, *line));
 		if (respond != 0)
 			respond = ft_get_edge(farm, *line);
 		ft_memdel((void **)line);

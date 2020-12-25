@@ -6,7 +6,7 @@
 #    By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/29 23:34:49 by mesafi            #+#    #+#              #
-#    Updated: 2020/11/06 17:14:34 by tbareich         ###   ########.fr        #
+#    Updated: 2020/12/25 19:10:34 by tbareich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ NAME = libft.a
 FTPRINTF = ft_printf
 
 HEADER = libft.h
+
+GRAPH = graph/graph.h
 
 OBJS = lib/bst_delete.o \
 			lib/bst_deletenode.o \
@@ -106,8 +108,12 @@ OBJS = lib/bst_delete.o \
 			graph/add_edge.o \
 			graph/create_graph.o \
 			graph/print_graph.o \
+			graph/delete_graph.o \
+			array_list/append.o \
+			array_list/init_array_list.o \
 			math/max.o \
-			math/min.o
+			math/min.o \
+			math/abs.o
 
 CC = gcc
 
@@ -131,7 +137,7 @@ build:
 		echo "$(BLUE)→ $(YELLOW)Creating $(NAME) ...$(RESET)" ; \
 	fi;
 
-$(NAME): $(OBJS) $(HEADER)
+$(NAME): $(OBJS) $(HEADER) $(GRAPH)
 	@make -C ft_printf
 	@if [ ! -f $(NAME) ] ; then \
 		echo "$(BLUE)→ $(GREEN)$(NAME) done $(RESET)" ; \

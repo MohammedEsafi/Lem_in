@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_reader.c                                        :+:      :+:    :+:   */
+/*   del_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mesafi <mesafi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/20 14:07:38 by mesafi            #+#    #+#             */
-/*   Updated: 2020/03/12 17:16:09 by tbareich         ###   ########.fr       */
+/*   Created: 2020/12/19 14:24:36 by mesafi            #+#    #+#             */
+/*   Updated: 2020/12/19 14:24:37 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lem_in.h"
 
-int			ft_reader(t_lem_in *farm)
+static void	del_child(t_list *child)
 {
-	int		key;
-	char	*line;
+	ft_memdel((void **)&(child->content));
+	ft_memdel((void **)&child);
+}
 
-	key = 0;
-	if (get_number_of_ants(&line, farm) == 1)
-		return (1);
-	if (get_the_rooms(&line, farm, &key) == 1)
-		return (1);
-	if (get_the_links(&line, farm, key) == 1)
-		return (1);
-	return (0);
+void		del_path(t_list *node)
+{
+	ft_lstiter(((t_path *)(node->content))->list, del_child);
+	ft_memdel((void **)&(node->content));
+	ft_memdel((void **)&node);
 }

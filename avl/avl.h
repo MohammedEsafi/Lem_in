@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 11:50:32 by tbareich          #+#    #+#             */
-/*   Updated: 2020/02/26 15:35:56 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/12/07 19:42:46 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ t_avl			*avl_find_str(t_avl *root, char *str);
 t_avl			*avl_find_elem(t_avl *root, void *content,
 									int (*cmp)(void *, void *));
 void			avl_inorder(t_avl *root, void *ptr, void (*f)(void *, void *));
+void			avl_delete(t_avl **root, void (*del)(void*, size_t));
 
 #endif

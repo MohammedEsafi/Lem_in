@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strip.c                                         :+:      :+:    :+:   */
+/*   init_array_list.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/18 09:10:19 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/21 19:27:19 by mesafi           ###   ########.fr       */
+/*   Created: 2020/01/31 15:25:05 by mesafi            #+#    #+#             */
+/*   Updated: 2020/02/11 14:11:50 by mesafi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "array_list.h"
 
-void	ft_strip(char **str, char *chars)
+void			init_array_list(t_array_list *arr)
 {
-	int		i;
-	int		j;
-
-	if (!str || !(*str))
-		return ;
-	i = 0;
-	j = ft_strlen(*str) - 1;
-	while ((*str)[i] != '\0' && ft_strchr(chars, (*str)[i]) != NULL)
-		++i;
-	while ((*str)[j] != '\0' && ft_strchr(chars, (*str)[j]) != NULL)
-		--j;
-	free(*str);
-	if (j < i)
-		*str = ft_strdup("");
-	else
-		*str = ft_strsub(*str, i, j - i + 1);
+	arr->list = (void **)malloc(sizeof(void *) * INITIAL_CAPACITY);
+	arr->len = INITIAL_CAPACITY;
+	arr->cursor = -1;
 }

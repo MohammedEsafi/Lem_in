@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_queue.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesafi <mesafi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 21:31:38 by mesafi            #+#    #+#             */
-/*   Updated: 2019/11/19 21:32:08 by mesafi           ###   ########.fr       */
+/*   Updated: 2020/03/02 17:23:28 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 void	free_queue(t_queue *queue)
 {
-	t_list	*node;
+	void	*content;
 
 	while (queue->size != 0)
 	{
-		node = dequeue(queue);
-		free(node->content);
-		free(node);
+		content = dequeue(queue);
+		ft_memdel((void **)&content);
 	}
 }

@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dequeue.c                                          :+:      :+:    :+:   */
+/*   avl_delete.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/18 11:28:29 by mesafi            #+#    #+#             */
-/*   Updated: 2020/02/29 19:47:25 by tbareich         ###   ########.fr       */
+/*   Created: 2020/12/07 17:55:17 by tbareich          #+#    #+#             */
+/*   Updated: 2020/12/21 23:06:47 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "queue.h"
+#include "avl.h"
 
-void		*dequeue(t_queue *queue)
+void	avl_delete(t_avl **root, void (*del)(void*, size_t))
 {
-	t_list	*tmp;
-	void	*content;
-
-	if (queue->front == NULL)
-		return (NULL);
-	queue->size -= 1;
-	tmp = queue->front;
-	queue->front = queue->front->next;
-	if (queue->front == NULL)
-		queue->last = NULL;
-	content = tmp->content;
-	ft_memdel((void **)&tmp);
-	return (content);
+	if ((*root) == NULL)
+		return ;
+	avl_delete(&((*root)->left), del);
+	avl_delete(&((*root)->right), del);
+	del((*root)->content, (*root)->content_size);
+	ft_memdel((void **)root);
 }
