@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:39:20 by mesafi            #+#    #+#             */
-/*   Updated: 2020/12/25 19:11:00 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/12/27 11:30:06 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,14 @@ void			ft_free(t_lem_in *farm)
 		ft_memdel((void **)&(farm->seen));
 	if (farm->capacity != NULL)
 		ft_memdel((void **)&(farm->capacity));
-	delete_graph(farm->graph);
+	if (farm->graph)
+		delete_graph(farm->graph);
 	ft_memdel((void **)&farm);
 }
 
 void			ft_error_handler(t_lem_in *farm)
 {
-	ft_putstr("ERROR\n");
+	ft_dprintf(2, "ERROR\n");
 	ft_free(farm);
 	exit(1);
 }
