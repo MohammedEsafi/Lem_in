@@ -6,7 +6,7 @@
 /*   By: tbareich <tbareich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 10:09:49 by mesafi            #+#    #+#             */
-/*   Updated: 2020/12/25 19:10:12 by tbareich         ###   ########.fr       */
+/*   Updated: 2020/12/28 17:06:14 by tbareich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int			ft_finder(t_lem_in *farm)
 	{
 		if (edmonds_karp(farm, farm->seen, farm->capacity) == 1)
 			break ;
+		ft_memset(farm->seen, 0, farm->graph->v);
 		if (routes_maker(farm) == 1)
 			break ;
 	}
